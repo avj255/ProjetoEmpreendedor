@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="Preto">#000000</color>
+    <color name="Laranja">#cc6100</color>
+    <color name="Branco">#ffffff</color>
+    <color name="Cinza">#DEDBDA</color>
+    <color name="Azul">#4C80FF</color>
+    <color name="RosaAlaranjado">#FFD19A</color>
+    <color name="CinzaClaro">#f2f2f2</color>
+    <color name="CinzaMedio">#e0dede</color>
+    <color name="LaranjaClaro">#f5d3b0</color>
+</resources>

@@ -1,0 +1,39 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/Preto</item>
+    </style>
+
+    <style name="CustomBotao" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/rectanglebutton</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="CustomEdit" parent="@android:style/Widget.EditText">
+        <item name="android:textColorHint">@color/Preto</item>
+        <item name="android:backgroundTint">@color/LaranjaClaro</item>
+        <item name="android:hint">@color/Preto</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingEnd">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+    </style>
+
+    <style name="CustomTextView" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/Azul</item>
+    </style>
+
+    <style name="CustomTela">
+        <item name="android:background">@drawable/rectangle</item>
+    </style>
+
+    <style name="NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>
