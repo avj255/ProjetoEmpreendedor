@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">ProjetoEmpreendedor</string>
     <string name="recuperarsenha"><u>Recuperar Senha</u></string>
+    <string name="LoginInvalido">Login Inválido</string>
     <string name="usuario">Usuário</string>
     <string name="entrar">Entrar</string>
     <string name="cadastrar">Cadastrar</string>

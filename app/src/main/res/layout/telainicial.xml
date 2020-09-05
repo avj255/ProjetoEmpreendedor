@@ -1,106 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/CustomTela"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="0dp">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/CustomTela"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        tools:layout_editor_absoluteX="-22dp"
-        tools:layout_editor_absoluteY="1dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/editTextUsuario"
+            style="@style/CustomEdit"
+            android:layout_width="210dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="28dp"
+            android:drawableEnd="@drawable/usuario"
+            android:drawableRight="@drawable/usuario"
+            android:ems="10"
+            android:hint="Usuário"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <EditText
+            android:id="@+id/editTextSenhaLogin"
+            style="@style/CustomEdit"
+            android:layout_width="210dp"
+            android:layout_height="41dp"
+            android:layout_marginTop="12dp"
+            android:drawableEnd="@drawable/senha"
+            android:drawableRight="@drawable/senha"
+            android:ems="10"
+            android:hint="Senha"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextUsuario" />
+
+        <TextView
+            android:id="@+id/textViewRecuperarSenha"
+            style="@style/CustomTextView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:scrollbars="vertical">
+            android:text="@string/recuperarsenha"
+            app:layout_constraintRight_toRightOf="@+id/editTextSenhaLogin"
+            app:layout_constraintTop_toBottomOf="@+id/editTextSenhaLogin" />
 
+        <TextView
+            android:id="@+id/textViewLoginInvalido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/LoginInvalido"
+            android:textColor="@android:color/holo_red_dark"
+            android:layout_marginTop="4dp"
+            android:visibility="invisible"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRecuperarSenha" />
 
-            <Button
-                android:id="@+id/botaoEntrar"
-                style="@style/CustomBotao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="208dp"
-                android:text="@string/entrar"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.312"
-                app:layout_constraintStart_toStartOf="parent" />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="88dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/restauranteaj" />
 
-            <Button
-                android:id="@+id/botaoCadastrar"
-                style="@style/CustomBotao"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:text="@string/cadastrar"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.092"
-                app:layout_constraintStart_toEndOf="@+id/botaoEntrar"
-                app:layout_constraintTop_toBottomOf="@+id/textViewRecuperarSenha"
-                app:layout_constraintVertical_bias="0.146" />
+        <Button
+            android:id="@+id/botaoEntrar"
+            style="@style/CustomBotao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/entrar"
+            android:layout_marginTop="50dp"
+            android:onClick="Login"
+            app:layout_constraintLeft_toLeftOf="@+id/editTextSenhaLogin"
+            app:layout_constraintTop_toBottomOf="@+id/editTextSenhaLogin" />
 
-            <EditText
-                android:id="@+id/editTextUsuario"
-                style="@style/CustomEdit"
-                android:layout_width="210dp"
-                android:layout_height="41dp"
-                android:layout_marginTop="28dp"
-                android:drawableEnd="@drawable/usuario"
-                android:drawableRight="@drawable/usuario"
-                android:ems="10"
-                android:hint="Usuário"
-                android:inputType="textPersonName"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.507"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        <Button
+            android:id="@+id/botaoCadastrar"
+            style="@style/CustomBotao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:onClick="Cadastrar"
+            android:text="@string/cadastrar"
+            app:layout_constraintRight_toRightOf="@+id/editTextSenhaLogin"
+            app:layout_constraintTop_toBottomOf="@+id/editTextSenhaLogin" />
 
-            <EditText
-                android:id="@+id/editTextSenhaLogin"
-                style="@style/CustomEdit"
-                android:layout_width="210dp"
-                android:layout_height="41dp"
-                android:layout_marginTop="12dp"
-                android:drawableEnd="@drawable/senha"
-                android:drawableRight="@drawable/senha"
-                android:ems="10"
-                android:hint="Senha"
-                android:inputType="textPassword"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.507"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextUsuario" />
+        <TextView
+            android:id="@+id/branco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:layout_constraintRight_toRightOf="@+id/botaoCadastrar"
+            app:layout_constraintTop_toBottomOf="@+id/botaoCadastrar" />
 
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="88dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/restauranteaj" />
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="90dp"
+            android:layout_height="100dp"
+            android:visibility="invisible"
+            android:indeterminateTint="@color/Laranja"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/textViewRecuperarSenha"
-                style="@style/CustomTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/recuperarsenha"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.672"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextSenhaLogin" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
