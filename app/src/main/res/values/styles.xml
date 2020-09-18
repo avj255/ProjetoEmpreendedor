@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/Preto</item>
+        <item name="colorPrimary">@color/Branco</item>
     </style>
 
     <style name="CustomBotao" parent="@android:style/Widget.Button">
@@ -13,11 +13,16 @@
     <style name="CustomEdit" parent="@android:style/Widget.EditText">
         <item name="android:textColorHint">@color/Preto</item>
         <item name="android:backgroundTint">@color/LaranjaClaro</item>
-        <item name="android:hint">@color/Preto</item>
         <item name="android:paddingStart">10dp</item>
         <item name="android:paddingLeft">10dp</item>
         <item name="android:paddingEnd">5dp</item>
         <item name="android:paddingRight">5dp</item>
+    </style>
+
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/Laranja</item>
+        <item name="android:background">@color/CinzaClaro</item>
+
     </style>
 
     <style name="CustomTextView" parent="@android:style/Widget.TextView">

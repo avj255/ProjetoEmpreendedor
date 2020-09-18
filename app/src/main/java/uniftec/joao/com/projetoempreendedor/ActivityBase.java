@@ -27,6 +27,7 @@ import java.util.Map;
 public class ActivityBase extends AppCompatActivity {
 
     public final String cServidor = "https://apitcc20200818071412.azurewebsites.net/api";
+    public String tipoRequisicao = "";
 
     void desabilitaInteracao()
     {

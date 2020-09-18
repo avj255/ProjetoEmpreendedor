@@ -53,6 +53,8 @@
             style="@style/CustomTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:onClick="RecuperarSenha"
             android:text="@string/recuperarsenha"
             app:layout_constraintRight_toRightOf="@+id/editTextSenhaLogin"
             app:layout_constraintTop_toBottomOf="@+id/editTextSenhaLogin" />
