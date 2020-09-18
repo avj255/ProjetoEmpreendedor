@@ -51,6 +51,8 @@ public class login extends ActivityBase  implements OnShowListener, OnClickListe
         edtUsuario = findViewById(R.id.editTextUsuario);
         edtSenha = findViewById(R.id.editTextSenhaLogin);
         edtLoginInvalido = findViewById(R.id.textViewLoginInvalido);
+
+        Sessao.usuarioLogado = new Usuarios();
     }
 
     private boolean isCampoVazio(String valor)
@@ -164,6 +166,11 @@ public class login extends ActivityBase  implements OnShowListener, OnClickListe
             {
                 edtLoginInvalido.setVisibility(View.VISIBLE);
             } else {
+
+                Sessao.usuarioLogado.usuario = respostaLogin.usuario;
+                Sessao.usuarioLogado.nome = respostaLogin.nome;
+                Sessao.usuarioLogado.administrador = respostaLogin.administrador;
+
                 if (respostaLogin.administrador == 1) {
                     Intent i = new Intent(this, administradores.class);
                     startActivity(i);

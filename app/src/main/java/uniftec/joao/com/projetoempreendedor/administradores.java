@@ -28,12 +28,10 @@ public class administradores extends AppCompatActivity {
             case R.id.AdicionarAdm:
                 i = new Intent(this, cadastroAdm.class);
                 startActivity(i);
-                finish();
                 break;
             case R.id.AlterarSenha:
                 i = new Intent(this, alterarSenha.class);
                 startActivity(i);
-                finish();
                 break;
             default:
                 return super.onOptionsItemSelected(item);

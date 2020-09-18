@@ -9,4 +9,5 @@ public class Usuarios {
     public String cnpj;
     public String cpf;
     public int administrador;
+    public String novaSenha;
 }

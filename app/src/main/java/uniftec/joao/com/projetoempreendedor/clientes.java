@@ -2,6 +2,7 @@ package uniftec.joao.com.projetoempreendedor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,7 +26,8 @@ public class clientes extends ActivityBase {
 
         switch(item.getItemId()) {
             case R.id.AlterarSenha:
-                //your action
+                Intent i = new Intent(this, alterarSenha.class);
+                startActivity(i);
                 break;
             default:
                 return super.onOptionsItemSelected(item);

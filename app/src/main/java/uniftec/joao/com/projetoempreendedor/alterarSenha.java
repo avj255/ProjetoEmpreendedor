@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
@@ -40,18 +41,6 @@ public class alterarSenha extends ActivityBase  {
 
     public void CancelarAlterarSenha(View view)
     {
-        Intent i;
-
-       // if (administradores)
-       // {
-             i = new Intent(this, administradores.class);
-       // }
-        //else
-        //{
-            // i = new Intent(this, clientes.class);
-       // }
-;
-        startActivity(i);
         finish();
     }
 
@@ -59,19 +48,18 @@ public class alterarSenha extends ActivityBase  {
     void RetornoPOST(JSONObject resposta) {
         progressBar.setVisibility(View.INVISIBLE);
         habilitaInteracao();
-//
-//        Gson gson = new Gson();
-//        Resposta respostaCadastro = gson.fromJson(resposta.toString(), Resposta.class);
-//
-//        if (respostaCadastro.codigoRetorno == 2)
-//        {
-//            edtCadastroInvalido.setText(respostaCadastro.descricao);
-//            edtCadastroInvalido.setVisibility(View.VISIBLE);
-//        } else {
-//            Intent i = new Intent(this, administradores.class);
-//            startActivity(i);
-//            finish();
-//        }
+
+        Gson gson = new Gson();
+        Resposta respostaCadastro = gson.fromJson(resposta.toString(), Resposta.class);
+
+        if (respostaCadastro.codigoRetorno == 2)
+        {
+            edtAlteracaoInvalida.setText(respostaCadastro.descricao);
+            edtAlteracaoInvalida.setVisibility(View.VISIBLE);
+        } else {
+            Toast.makeText(this, "Senha alterada com sucesso!", Toast.LENGTH_LONG).show();
+            finish();
+        }
     }
 
     @Override
@@ -83,27 +71,20 @@ public class alterarSenha extends ActivityBase  {
 
 
     public void AlteraSenha(View view)
-
     {
-
         if (validaCampos())
         {
-//            Usuarios usuario = new Usuarios();
-//            usuario.usuario = edtUsuario.getText().toString();
-//            usuario.senha = edtSenha.getText().toString();
-//            usuario.administrador = 1; // Administrador
-//            usuario.nome = edtNome.getText().toString();
-//            usuario.email = edtEmail.getText().toString();
-//            usuario.cpf = edtCpf.getText().toString();
-//            usuario.cnpj = "";
-//            usuario.senha = edtSenha.getText().toString();
-//
-//            edtCadastroInvalido.setVisibility(View.INVISIBLE);
-//            progressBarCadastro.setVisibility(View.VISIBLE);
-//            desabilitaInteracao();
-//            RequisicaoPOST(cServidor + "/Usuarios/Cadastro", usuario);
-        }
+            Usuarios usuario = new Usuarios();
+            usuario.usuario = Sessao.usuarioLogado.usuario;
+            usuario.senha = edtSenha.getText().toString();
+            usuario.novaSenha = edtNovaSenha.getText().toString();
 
+            edtAlteracaoInvalida.setVisibility(View.INVISIBLE);
+            progressBar.setVisibility(View.VISIBLE);
+
+            desabilitaInteracao();
+            RequisicaoPOST(cServidor + "/Usuarios/AlterarSenha", usuario);
+        }
     }
     private boolean validaCampos()
     {
