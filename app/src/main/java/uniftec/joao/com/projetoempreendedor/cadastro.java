@@ -19,6 +19,7 @@ import org.json.JSONObject;
 import java.util.InputMismatchException;
 
 import uniftec.joao.com.projetoempreendedor.Entidades.Resposta;
+import uniftec.joao.com.projetoempreendedor.Entidades.RespostaLogin;
 import uniftec.joao.com.projetoempreendedor.Entidades.Usuarios;
 
 public class cadastro extends ActivityBase {
@@ -47,6 +48,7 @@ public class cadastro extends ActivityBase {
         progressBarCadastro = findViewById(R.id.progressBarCadastro);
         edtCadastroInvalido = findViewById(R.id.textViewCadastroInválido);
         edtCpf.addTextChangedListener(MaskEditUtil.mask(edtCpf, MaskEditUtil.FORMAT_CPF));
+        Sessao.usuarioLogado = new Usuarios();
     }
 
     private boolean validaCampos()
@@ -224,16 +226,19 @@ public class cadastro extends ActivityBase {
         habilitaInteracao();
 
         Gson gson = new Gson();
-        Resposta respostaCadastro = gson.fromJson(resposta.toString(), Resposta.class);
+        RespostaLogin respostaCadastro = gson.fromJson(resposta.toString(), RespostaLogin.class);
 
         if (respostaCadastro.codigoRetorno == 2)
         {
             edtCadastroInvalido.setText(respostaCadastro.descricao);
             edtCadastroInvalido.setVisibility(View.VISIBLE);
         } else {
-                Intent i = new Intent(this, clientes.class);
-                startActivity(i);
-                finish();
+            Sessao.usuarioLogado.usuario = edtUsuario.getText().toString();
+            Sessao.usuarioLogado.nome = edtNome.getText().toString();
+            Sessao.usuarioLogado.administrador = 0;
+            Intent i = new Intent(this, clientes.class);
+            startActivity(i);
+            finish();
                }
     }
 
