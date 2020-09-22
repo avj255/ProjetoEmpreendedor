@@ -16,17 +16,43 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="287dp"
-            android:layout_height="73dp"
-            android:text="TelaClientes"
-            android:textSize="50sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="88dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.428" />
+            app:srcCompat="@drawable/restauranteaj" />
+
+        <Button
+            android:id="@+id/botaoCardapioDia"
+            style="@style/CustomBotao"
+            android:layout_width="363dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="36dp"
+            android:textSize="24sp"
+            android:onClick="CardapioDia"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView2"
+            android:text="@string/cardapioDia" />
+
+        <Button
+            android:id="@+id/botaoCardapioSemanal"
+            style="@style/CustomBotao"
+            android:layout_width="363dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="24dp"
+            android:textSize="24sp"
+            android:onClick="CardapioSemanal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/botaoCardapioDia"
+            app:layout_constraintVertical_bias="0.0"
+            android:text="@string/cardapioSemanal" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

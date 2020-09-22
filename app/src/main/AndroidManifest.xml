@@ -8,7 +8,15 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
-        <activity android:name=".alterarSenha"></activity>
+        <activity
+            android:name=".cardapiodia"
+            android:label="@string/title_activity_cardapiodia"
+            android:theme="@style/NoActionBar"></activity>
+        <activity
+            android:name=".cardapiosemanal_clientes"
+            android:label="@string/title_activity_cardapiosemanal_clientes"
+            android:theme="@style/NoActionBar" />
+        <activity android:name=".alterarSenha" />
         <activity android:name=".login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -7,5 +7,23 @@
     <string name="entrar">Entrar</string>
     <string name="cadastrar">Cadastrar</string>
     <string name="senha">Senha</string>
+    <string name="cardapioDia">Cardápio do Dia</string>
+    <string name="cardapioSemanal">Cardápio Semanal</string>
+    <string name="cardapioSegunda">Segunda-Feira</string>
+    <string name="cardapioTerca">Terça-Feira</string>
+    <string name="cardapioQuarta">Quarta-Feira</string>
+    <string name="cardapioQuinta">Quinta-Feira</string>
+    <string name="cardapioSexta">Sexta-Feira</string>
+    <string name="cardapioSabado">Sábado</string>
     <string name="TextoCaixaDialogoEmail">"Recuperar Senha: Preencha o campo abaixo com o seu usuário e e-mail."</string>
+    <string name="title_activity_cardapiosemanal_clientes">cardapiosemanal_clientes</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_cardapiodia">cardapiodia</string>
 </resources>
