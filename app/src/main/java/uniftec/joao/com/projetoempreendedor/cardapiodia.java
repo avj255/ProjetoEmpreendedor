@@ -14,9 +14,11 @@ public class cardapiodia extends ActivityBase {
     ListView mListView;
     int[] images = {R.drawable.lasanha,
                     R.drawable.salada_caprese,
+                    R.drawable.macarrao,
                     R.drawable.macarrao};
     String[] Names = {"Lasanha",
                       "Salada Caprese",
+                      "Macarrao",
                       "Macarrao"};
 
     @Override
@@ -49,9 +51,9 @@ public class cardapiodia extends ActivityBase {
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
-            View views = getLayoutInflater().inflate(R.layout.customlayout,null);
-            ImageView mImageView = (ImageView) views.findViewById(R.id.ImageViewLista);
-            TextView mTextView = views.findViewById(R.id.textViewPratosLista);
+            View views = getLayoutInflater().inflate(R.layout.custompratos,null);
+            ImageView mImageView = (ImageView) views.findViewById(R.id.imageView3);
+            TextView mTextView = views.findViewById(R.id.textView4);
 
             mImageView.setImageResource(images[i]);
             mTextView.setText(Names[i]);
