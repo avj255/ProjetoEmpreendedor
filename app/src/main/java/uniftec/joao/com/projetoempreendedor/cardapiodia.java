@@ -1,11 +1,10 @@
 package uniftec.joao.com.projetoempreendedor;
 
-import android.graphics.Color;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -32,8 +31,8 @@ public class cardapiodia extends ActivityBase {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.tela_cardapiodia);
         diaSemana = findViewById(R.id.textViewDiaSemana);
-        diaSemana.setText(Sessao.diaSemana);
-        mListView = findViewById(R.id.ListaCardapioDia);
+        diaSemana.setText(Sessao.descricaoDiaSemana);
+        mListView = findViewById(R.id.ListaIngredientes);
         progressBar = findViewById(R.id.progressBar);
     }
 
@@ -47,7 +46,7 @@ public class cardapiodia extends ActivityBase {
     {
         progressBar.setVisibility(View.VISIBLE);
         desabilitaInteracao();
-        RequisicaoGET(cServidor + "/Pratos_DiaSemana/PratoDia");
+        RequisicaoGET(cServidor + "/Pratos_DiaSemana/"+ Sessao.diaSemana);
     }
 
     @Override
@@ -63,12 +62,25 @@ public class cardapiodia extends ActivityBase {
         {
             pratos.add(gson.fromJson(gson.toJson(pratosDia.prato), Pratos.class));
         }
-        PratosAdapter pratosAdapter = new PratosAdapter(this, R.layout.custompratos, pratos);
+        final PratosAdapter pratosAdapter = new PratosAdapter(this, R.layout.custompratos, pratos);
         mListView.setAdapter(pratosAdapter);
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                Sessao.prato = pratosAdapter.getItem(i);
+                Intent j = new Intent(cardapiodia.this, pratos.class);
+                startActivity(j);
+            }
+        });
 
         progressBar.setVisibility(View.INVISIBLE);
         habilitaInteracao();
     }
+
 
     @Override
     void ErroRequisicao(VolleyError erro) {

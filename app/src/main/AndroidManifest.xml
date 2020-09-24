@@ -9,9 +9,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
         <activity
+            android:name=".pratos"
+            android:label="@string/title_activity_pratos"
+            android:theme="@style/NoActionBar"></activity>
+        <activity
             android:name=".cardapiodia"
             android:label="@string/title_activity_cardapiodia"
-            android:theme="@style/NoActionBar"></activity>
+            android:theme="@style/NoActionBar" />
         <activity
             android:name=".cardapiosemanal_clientes"
             android:label="@string/title_activity_cardapiosemanal_clientes"
@@ -38,8 +42,8 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>

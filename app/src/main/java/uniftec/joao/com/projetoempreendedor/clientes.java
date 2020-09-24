@@ -30,17 +30,17 @@ public class clientes extends ActivityBase {
 
     public void CardapioDia(View view)
     {
+
+        Sessao.descricaoDiaSemana = weekDayDescription();
         Sessao.diaSemana = weekDay();
         Intent i = new Intent(this, cardapiodia.class);
         startActivity(i);
-        finish();
     }
 
     public void CardapioSemanal(View view)
     {
         Intent i = new Intent(this, cardapiosemanal_clientes.class);
         startActivity(i);
-        finish();
     }
     public String weekDay() {
 
@@ -48,8 +48,29 @@ public class clientes extends ActivityBase {
         int day = calendar.get(Calendar.DAY_OF_WEEK);
 
         switch (day) {
+            case Calendar.MONDAY:
+                return "1";
+            case Calendar.TUESDAY:
+                return "2";
+            case Calendar.WEDNESDAY:
+                return "3";
+            case Calendar.THURSDAY:
+                return "4";
+            case Calendar.FRIDAY:
+                return "5";
+            case Calendar.SATURDAY:
+                return "6";
             case Calendar.SUNDAY:
-                return "Domingo";
+                return "7";
+        }
+        return "";
+    }
+    public String weekDayDescription() {
+
+        Calendar calendar = Calendar.getInstance();
+        int day = calendar.get(Calendar.DAY_OF_WEEK);
+
+        switch (day) {
             case Calendar.MONDAY:
                 return "Segunda-Feira";
             case Calendar.TUESDAY:
@@ -62,10 +83,11 @@ public class clientes extends ActivityBase {
                 return "Sexta-Feira";
             case Calendar.SATURDAY:
                 return "Sábado";
+            case Calendar.SUNDAY:
+                return "Domingo";
         }
         return "";
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

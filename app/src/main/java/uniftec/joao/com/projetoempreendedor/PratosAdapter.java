@@ -24,6 +24,7 @@ public class PratosAdapter extends ArrayAdapter<Pratos> {
         super(context, resource, objects);
     }
 
+
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -32,7 +33,7 @@ public class PratosAdapter extends ArrayAdapter<Pratos> {
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
         View view = layoutInflater.inflate(R.layout.custompratos, parent, false);
 
-        TextView tvNomePrato = (TextView) view.findViewById(R.id.tvNomePrato);
+        TextView tvNomePrato = (TextView) view.findViewById(R.id.tvNomeIngredientes);
         tvNomePrato.setText(prato.nome);
 
         if (prato.foto != null) {
@@ -43,4 +44,5 @@ public class PratosAdapter extends ArrayAdapter<Pratos> {
         }
         return view;
     }
+
 }

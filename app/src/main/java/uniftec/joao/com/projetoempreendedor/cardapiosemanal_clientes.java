@@ -16,40 +16,47 @@ public class cardapiosemanal_clientes extends ActivityBase {
 
     public void CardapioSegunda(View view)
     {
-        Intent i = new Intent(this, cadastro.class);
+        Sessao.descricaoDiaSemana = "Segunda-Feira";
+        Sessao.diaSemana = "1";
+        Intent i = new Intent(this, cardapiodia.class);
         startActivity(i);
-        finish();
     }
 
     public void CardapioTerca(View view)
     {
-        Intent i = new Intent(this, cadastro.class);
+        Sessao.descricaoDiaSemana = "Terça-Feira";
+        Sessao.diaSemana = "2";
+        Intent i = new Intent(this, cardapiodia.class);
         startActivity(i);
-        finish();
     }
 
     public void CardapioQuarta(View view)
     {
-        Intent i = new Intent(this, cadastro.class);
+        Sessao.descricaoDiaSemana = "Quarta-Feira";
+        Sessao.diaSemana = "3";
+        Intent i = new Intent(this, cardapiodia.class);
         startActivity(i);
         finish();
     }
     public void CardapioQuinta(View view)
     {
-        Intent i = new Intent(this, cadastro.class);
+        Sessao.descricaoDiaSemana = "Quinta-Feira";
+        Sessao.diaSemana = "4";
+        Intent i = new Intent(this, cardapiodia.class);
         startActivity(i);
-        finish();
     }
     public void CardapioSexta(View view)
     {
-        Intent i = new Intent(this, cadastro.class);
+        Sessao.descricaoDiaSemana = "Sexta-Feira";
+        Sessao.diaSemana = "5";
+        Intent i = new Intent(this, cardapiodia.class);
         startActivity(i);
-        finish();
     }
     public void CardapioSabado(View view)
     {
-        Intent i = new Intent(this, cadastro.class);
+        Sessao.descricaoDiaSemana = "Sábado";
+        Sessao.diaSemana = "6";
+        Intent i = new Intent(this, cardapiodia.class);
         startActivity(i);
-        finish();
     }
 }
