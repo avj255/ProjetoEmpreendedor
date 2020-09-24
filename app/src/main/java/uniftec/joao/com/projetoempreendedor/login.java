@@ -53,6 +53,15 @@ public class login extends ActivityBase  implements OnShowListener, OnClickListe
         edtLoginInvalido = findViewById(R.id.textViewLoginInvalido);
 
         Sessao.usuarioLogado = new Usuarios();
+
+        // Debug
+        Sessao.usuarioLogado.usuario = "Usuario Debug";
+        Sessao.usuarioLogado.nome = "Usuario Debug";
+        Sessao.usuarioLogado.administrador = 1;
+
+        Intent i = new Intent(this, clientes.class);
+        startActivity(i);
+        finish();
     }
 
     private boolean isCampoVazio(String valor)
