@@ -10,16 +10,13 @@
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
         <activity
             android:name=".pratos"
-            android:label="@string/title_activity_pratos"
-            android:theme="@style/NoActionBar"></activity>
+            android:label="@string/title_activity_pratos"></activity>
         <activity
             android:name=".cardapiodia"
-            android:label="@string/title_activity_cardapiodia"
-            android:theme="@style/NoActionBar" />
+            android:label="@string/title_activity_cardapiodia" />
         <activity
             android:name=".cardapiosemanal_clientes"
-            android:label="@string/title_activity_cardapiosemanal_clientes"
-            android:theme="@style/NoActionBar" />
+            android:label="@string/title_activity_cardapiosemanal_clientes" />
         <activity android:name=".alterarSenha" />
         <activity android:name=".login">
             <intent-filter>
