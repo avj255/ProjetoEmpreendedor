@@ -10,5 +10,5 @@ public class Pratos {
     public String video;
     public String foto;
     public List<Pratos_Ingredientes> pratos_Ingredientes;
-    public List<Ingredientes> Ingredientes;
+    public List<Ingredientes> ingredientes;
 }

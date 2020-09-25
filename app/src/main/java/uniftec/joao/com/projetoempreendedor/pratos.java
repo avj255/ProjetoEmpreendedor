@@ -56,9 +56,9 @@ public class pratos extends ActivityBase {
         progressBar.setVisibility(View.VISIBLE);
         desabilitaInteracao();
 
-        if (Sessao.prato.Ingredientes != null)
+        if (Sessao.prato.ingredientes != null)
         {
-            PratoIngredientesAdapter pratosAdapter = new PratoIngredientesAdapter(this, R.layout.custompratoingredientes, Sessao.prato.Ingredientes);
+            PratoIngredientesAdapter pratosAdapter = new PratoIngredientesAdapter(this, R.layout.custompratoingredientes, Sessao.prato.ingredientes);
             Ingredientes.setAdapter(pratosAdapter);
         }
 

@@ -58,6 +58,7 @@ public class cardapiodia extends ActivityBase {
         {
             pratos.add(gson.fromJson(gson.toJson(pratosDia.prato), Pratos.class));
         }
+
         final PratosAdapter pratosAdapter = new PratosAdapter(this, R.layout.custompratos, pratos);
         mListView.setAdapter(pratosAdapter);
 

@@ -1,211 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/CustomTela"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="0dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/CustomTela"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+    <Button
+        android:id="@+id/botaoRealizarPedido"
+        style="@style/CustomBotao"
+        android:layout_width="363dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="28dp"
+        android:onClick="CardapioSabado"
+        android:text="Realizar Pedido"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextQuantidade" />
 
-        <TextView
-            android:id="@+id/branco3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:layout_constraintRight_toRightOf="@+id/botaoRealizarPedido"
-            app:layout_constraintTop_toBottomOf="@+id/botaoRealizarPedido" />
+    <EditText
+        android:id="@+id/editTextQuantidade"
+        android:layout_width="54dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.057"
+        app:layout_constraintStart_toEndOf="@+id/textViewPrato6"
+        app:layout_constraintTop_toBottomOf="@+id/view3" />
 
-        <Button
-            android:id="@+id/botaoRealizarPedido"
-            style="@style/CustomBotao"
-            android:layout_width="363dp"
-            android:layout_height="68dp"
-            android:layout_marginTop="16dp"
-            android:onClick="CardapioSabado"
-            android:text="Realizar Pedido"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.458"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view4"
-            app:layout_constraintVertical_bias="0.126" />
+    <ImageView
+        android:id="@+id/ImagePrato"
+        android:layout_width="366dp"
+        android:layout_height="183dp"
+        android:layout_marginTop="20dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPrato"
+        tools:srcCompat="@tools:sample/avatars" />
 
-        <EditText
-            android:id="@+id/editTextQuantidade"
-            android:layout_width="54dp"
-            android:layout_height="25dp"
-            android:layout_marginTop="8dp"
-            android:ems="10"
-            android:inputType="number"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.057"
-            app:layout_constraintStart_toEndOf="@+id/textViewPrato6"
-            app:layout_constraintTop_toBottomOf="@+id/view3" />
+    <ListView
+        android:id="@+id/ListaIngredientes"
+        android:layout_width="367dp"
+        android:layout_height="122dp"
+        android:layout_marginTop="12dp"
+        android:footerDividersEnabled="true"
+        android:headerDividersEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
-        <ImageView
-            android:id="@+id/ImagePrato"
-            android:layout_width="366dp"
-            android:layout_height="183dp"
-            android:layout_marginTop="20dp"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.488"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPrato"
-            tools:srcCompat="@tools:sample/avatars" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="90dp"
+        android:layout_height="100dp"
+        android:indeterminateTint="@color/Laranja"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ListView
-            android:id="@+id/ListaIngredientes"
-            android:layout_width="367dp"
-            android:layout_height="122dp"
-            android:layout_marginTop="12dp"
-            android:footerDividersEnabled="true"
-            android:headerDividersEnabled="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view" />
+    <TextView
+        android:id="@+id/branco3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintRight_toRightOf="@+id/botaoRealizarPedido"
+        app:layout_constraintTop_toBottomOf="@+id/botaoRealizarPedido" />
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="90dp"
-            android:layout_height="100dp"
-            android:indeterminateTint="@color/Laranja"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/textViewPrato6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="serif"
+        android:text="Quantidade:"
+        android:textColor="@color/Preto"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view3" />
 
-        <TextView
-            android:id="@+id/textViewPrato6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="serif"
-            android:text="Quantidade:"
-            android:textColor="@color/Preto"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view3" />
+    <TextView
+        android:id="@+id/textViewValorPrato"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="serif"
+        android:text="Valor"
+        android:textColor="@color/Preto"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewPrato5"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
 
-        <TextView
-            android:id="@+id/textViewValorPrato"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="serif"
-            android:text="Valor"
-            android:textColor="@color/Preto"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/textViewPrato5"
-            app:layout_constraintTop_toBottomOf="@+id/view2" />
+    <TextView
+        android:id="@+id/textViewPrato5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="serif"
+        android:text="Valor:"
+        android:textColor="@color/Preto"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
 
-        <TextView
-            android:id="@+id/textViewPrato5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="serif"
-            android:text="Valor:"
-            android:textColor="@color/Preto"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view2" />
+    <TextView
+        android:id="@+id/textViewPrato2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="serif"
+        android:text="Ingredientes"
+        android:textColor="@color/Preto"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.082"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ImagePrato" />
 
-        <TextView
-            android:id="@+id/textViewPrato2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:fontFamily="serif"
-            android:text="Ingredientes"
-            android:textColor="@color/Preto"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.082"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ImagePrato" />
+    <TextView
+        android:id="@+id/textViewPrato"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:fontFamily="serif"
+        android:text="Prato"
+        android:textColor="@color/Preto"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/textViewPrato"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:fontFamily="serif"
-            android:text="Prato"
-            android:textColor="@color/Preto"
-            android:textSize="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <View
+        android:id="@+id/view3"
+        android:layout_width="380dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="7dp"
+        android:background="@color/Laranja"
+        android:backgroundTint="@color/Laranja"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewValorPrato"></View>
 
-        <View
-            android:id="@+id/view3"
-            android:layout_width="380dp"
-            android:layout_height="2dp"
-            android:layout_marginTop="7dp"
-            android:background="@color/Laranja"
-            android:backgroundTint="@color/Laranja"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.516"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewValorPrato"></View>
+    <View
+        android:id="@+id/view4"
+        android:layout_width="380dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="7dp"
+        android:background="@color/Laranja"
+        android:backgroundTint="@color/Laranja"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPrato6"></View>
 
-        <View
-            android:id="@+id/view4"
-            android:layout_width="380dp"
-            android:layout_height="2dp"
-            android:layout_marginTop="7dp"
-            android:background="@color/Laranja"
-            android:backgroundTint="@color/Laranja"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPrato6"></View>
+    <View
+        android:id="@+id/view2"
+        android:layout_width="380dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/Laranja"
+        android:backgroundTint="@color/Laranja"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ListaIngredientes"></View>
 
-        <View
-            android:id="@+id/view2"
-            android:layout_width="380dp"
-            android:layout_height="2dp"
-            android:layout_marginTop="16dp"
-            android:background="@color/Laranja"
-            android:backgroundTint="@color/Laranja"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ListaIngredientes"></View>
+    <View
+        android:id="@+id/view"
+        android:layout_width="380dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="2dp"
+        android:background="@color/Laranja"
+        android:backgroundTint="@color/Laranja"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPrato2"></View>
 
-        <View
-            android:id="@+id/view"
-            android:layout_width="380dp"
-            android:layout_height="2dp"
-            android:layout_marginTop="2dp"
-            android:background="@color/Laranja"
-            android:backgroundTint="@color/Laranja"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.483"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPrato2"></View>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
