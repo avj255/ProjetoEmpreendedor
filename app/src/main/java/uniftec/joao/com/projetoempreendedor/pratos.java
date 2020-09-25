@@ -1,6 +1,8 @@
 package uniftec.joao.com.projetoempreendedor;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,18 +17,23 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import uniftec.joao.com.projetoempreendedor.Entidades.Ingredientes;
+import uniftec.joao.com.projetoempreendedor.Entidades.Pedidos;
 import uniftec.joao.com.projetoempreendedor.Entidades.Pratos;
 import uniftec.joao.com.projetoempreendedor.Entidades.Pratos_DiaSemana;
+import uniftec.joao.com.projetoempreendedor.Entidades.Resposta;
+import uniftec.joao.com.projetoempreendedor.Entidades.RespostaLogin;
 
 public class pratos extends ActivityBase {
 
@@ -35,6 +42,7 @@ public class pratos extends ActivityBase {
     TextView valorprato;
     EditText quantidade;
     ProgressBar progressBar;
+    TextView tvNomePrato;
     int listViewTouchAction;
 
     @Override
@@ -46,6 +54,7 @@ public class pratos extends ActivityBase {
         valorprato = findViewById(R.id.textViewValorPrato);
         quantidade = findViewById(R.id.editTextQuantidade);
         progressBar = findViewById(R.id.progressBar);
+        tvNomePrato = findViewById(R.id.textViewPrato);
 
         setListViewScrollable(Ingredientes);
     }
@@ -58,7 +67,6 @@ public class pratos extends ActivityBase {
 
     void atualizarPrato()
     {
-
         progressBar.setVisibility(View.VISIBLE);
         desabilitaInteracao();
 
@@ -74,10 +82,68 @@ public class pratos extends ActivityBase {
             imagePrato.setImageBitmap(decodedByte);
         }
 
+        tvNomePrato.setText(Sessao.prato.nome);
         valorprato.setText("R$ " + String.format("%.2f", Sessao.prato.valor));
 
         progressBar.setVisibility(View.INVISIBLE);
         habilitaInteracao();
+    }
+
+    public void RegistrarPedido(View view)
+    {
+        try {
+            Integer.parseInt(quantidade.getText().toString());
+        } catch (Exception e)
+        {
+            Toast.makeText(this, "Digite uma quantidade válida", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        new AlertDialog.Builder(this)
+                .setTitle("Confirmação do Pedido")
+                .setMessage("\nQuantidade: " + quantidade.getText().toString() + "\nValor Total: " + "R$ " + String.format("%.2f", Sessao.prato.valor * Integer.parseInt(quantidade.getText().toString())))
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        Pedidos pedido = new Pedidos();
+                        pedido.mesa = "0";
+                        pedido.prato = Sessao.prato.pratoID;
+                        pedido.quantidade = Integer.parseInt(quantidade.getText().toString());
+                        pedido.usuario = Sessao.usuarioLogado.userID;
+                        pedido.valor = Sessao.prato.valor * pedido.quantidade;
+                        pedido.situacao = 1;
+                        progressBar.setVisibility(View.VISIBLE);
+                        desabilitaInteracao();
+                        RequisicaoPOST(cServidor + "/Pedidos", pedido);
+                    }})
+                .setNegativeButton(android.R.string.no, null).show();
+    }
+
+    @Override
+    void RetornoPOST(JSONObject resposta) {
+        super.RetornoPOST(resposta);
+
+        progressBar.setVisibility(View.INVISIBLE);
+        habilitaInteracao();
+
+        Gson gson = new Gson();
+        Resposta resp = gson.fromJson(resposta.toString(), Resposta.class);
+
+        if (resp.codigoRetorno == 1) {
+            androidx.appcompat.app.AlertDialog.Builder dlg = new androidx.appcompat.app.AlertDialog.Builder(this, R.style.AlertDialogTheme);
+            dlg.setTitle("Pedido");
+            dlg.setMessage("Pedido efetuado com sucesso!");
+            dlg.setNeutralButton("OK", null);
+            dlg.show();
+        } else
+        {
+            androidx.appcompat.app.AlertDialog.Builder dlg = new androidx.appcompat.app.AlertDialog.Builder(this, R.style.AlertDialogTheme);
+            dlg.setTitle("Pedido");
+            dlg.setMessage("Ocorreu um erro ao tentar realizar o seu pedido.");
+            dlg.setNeutralButton("OK", null);
+            dlg.show();
+        }
     }
 
     @SuppressLint("ClickableViewAccessibility")

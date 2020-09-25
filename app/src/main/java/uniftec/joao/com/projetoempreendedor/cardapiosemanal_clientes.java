@@ -36,7 +36,6 @@ public class cardapiosemanal_clientes extends ActivityBase {
         Sessao.diaSemana = "3";
         Intent i = new Intent(this, cardapiodia.class);
         startActivity(i);
-        finish();
     }
     public void CardapioQuinta(View view)
     {

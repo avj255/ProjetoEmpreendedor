@@ -55,6 +55,7 @@ public class login extends ActivityBase  implements OnShowListener, OnClickListe
         Sessao.usuarioLogado = new Usuarios();
 
         // Debug
+        Sessao.usuarioLogado.userID = 4;
         Sessao.usuarioLogado.usuario = "Usuario Debug";
         Sessao.usuarioLogado.nome = "Usuario Debug";
         Sessao.usuarioLogado.administrador = 1;

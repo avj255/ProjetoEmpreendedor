@@ -60,7 +60,7 @@
         android:layout_width="363dp"
         android:layout_height="68dp"
         android:layout_marginTop="28dp"
-        android:onClick="CardapioSabado"
+        android:onClick="RegistrarPedido"
         android:text="Realizar Pedido"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
