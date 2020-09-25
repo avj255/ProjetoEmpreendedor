@@ -10,8 +10,7 @@
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
         <activity
             android:name=".pratos"
-            android:label="@string/title_activity_pratos"
-            android:theme="@style/NoActionBar"></activity>
+            android:label="@string/title_activity_pratos"/>
         <activity
             android:name=".cardapiodia"
             android:label="@string/title_activity_cardapiodia"

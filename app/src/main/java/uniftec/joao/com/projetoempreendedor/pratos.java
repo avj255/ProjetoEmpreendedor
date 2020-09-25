@@ -1,11 +1,14 @@
 package uniftec.joao.com.projetoempreendedor;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -32,6 +35,7 @@ public class pratos extends ActivityBase {
     TextView valorprato;
     EditText quantidade;
     ProgressBar progressBar;
+    int listViewTouchAction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,8 @@ public class pratos extends ActivityBase {
         valorprato = findViewById(R.id.textViewValorPrato);
         quantidade = findViewById(R.id.editTextQuantidade);
         progressBar = findViewById(R.id.progressBar);
+
+        setListViewScrollable(Ingredientes);
     }
 
     @Override
@@ -68,12 +74,40 @@ public class pratos extends ActivityBase {
             imagePrato.setImageBitmap(decodedByte);
         }
 
-        valorprato.setText(Double.toString(Sessao.prato.valor));
+        valorprato.setText("R$ " + String.format("%.2f", Sessao.prato.valor));
 
         progressBar.setVisibility(View.INVISIBLE);
         habilitaInteracao();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
+    private void setListViewScrollable(final ListView list) {
+        list.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                listViewTouchAction = event.getAction();
+                if (listViewTouchAction == MotionEvent.ACTION_MOVE)
+                {
+                    list.scrollBy(0, 1);
+                }
+                return false;
+            }
+        });
+        list.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view,
+                                             int scrollState) {
+            }
 
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem,
+                                 int visibleItemCount, int totalItemCount) {
+                if (listViewTouchAction == MotionEvent.ACTION_MOVE)
+                {
+                    list.scrollBy(0, -1);
+                }
+            }
+        });
+    }
 
 }
