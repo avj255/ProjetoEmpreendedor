@@ -34,11 +34,7 @@ public class cardapiodia extends ActivityBase {
         diaSemana.setText(Sessao.descricaoDiaSemana);
         mListView = findViewById(R.id.ListaIngredientes);
         progressBar = findViewById(R.id.progressBar);
-    }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
         atualizarListaPratos();
     }
 
