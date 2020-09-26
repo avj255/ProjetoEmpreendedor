@@ -226,13 +226,14 @@ public class cadastro extends ActivityBase {
         habilitaInteracao();
 
         Gson gson = new Gson();
-        RespostaLogin respostaCadastro = gson.fromJson(resposta.toString(), RespostaLogin.class);
+        Resposta respostaCadastro = gson.fromJson(resposta.toString(), Resposta.class);
 
         if (respostaCadastro.codigoRetorno == 2)
         {
             edtCadastroInvalido.setText(respostaCadastro.descricao);
             edtCadastroInvalido.setVisibility(View.VISIBLE);
         } else {
+            Sessao.usuarioLogado.userID = Integer.parseInt(respostaCadastro.descricao);
             Sessao.usuarioLogado.usuario = edtUsuario.getText().toString();
             Sessao.usuarioLogado.nome = edtNome.getText().toString();
             Sessao.usuarioLogado.administrador = 0;

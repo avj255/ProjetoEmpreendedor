@@ -176,7 +176,7 @@ public class login extends ActivityBase  implements OnShowListener, OnClickListe
             {
                 edtLoginInvalido.setVisibility(View.VISIBLE);
             } else {
-
+                Sessao.usuarioLogado.userID = respostaLogin.userID;
                 Sessao.usuarioLogado.usuario = respostaLogin.usuario;
                 Sessao.usuarioLogado.nome = respostaLogin.nome;
                 Sessao.usuarioLogado.administrador = respostaLogin.administrador;
