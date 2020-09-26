@@ -239,7 +239,6 @@ public class cadastro extends ActivityBase {
             Sessao.usuarioLogado.administrador = 0;
             Intent i = new Intent(this, clientes.class);
             startActivity(i);
-            finish();
                }
     }
 

@@ -184,11 +184,9 @@ public class login extends ActivityBase  implements OnShowListener, OnClickListe
                 if (respostaLogin.administrador == 1) {
                     Intent i = new Intent(this, administradores.class);
                     startActivity(i);
-                    finish();
                 } else {
                     Intent i = new Intent(this, clientes.class);
                     startActivity(i);
-                    finish();
                 }
             }
         }
