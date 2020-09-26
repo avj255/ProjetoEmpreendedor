@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -25,6 +26,7 @@ import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +45,9 @@ public class pratos extends ActivityBase {
     EditText quantidade;
     ProgressBar progressBar;
     TextView tvNomePrato;
+    Button BtnPedido;
+    TextView tvQtde;
+    View view4;
     int listViewTouchAction;
 
     @Override
@@ -55,8 +60,19 @@ public class pratos extends ActivityBase {
         quantidade = findViewById(R.id.editTextQuantidade);
         progressBar = findViewById(R.id.progressBar);
         tvNomePrato = findViewById(R.id.textViewPrato);
+        BtnPedido = findViewById(R.id.botaoRealizarPedido);
+        tvQtde = findViewById(R.id.textViewPrato6);
+        view4 = findViewById(R.id.view4);
+
 
         setListViewScrollable(Ingredientes);
+        if (Sessao.diaSemana != Utilidades.WeekDay())
+        {
+            BtnPedido.setVisibility(View.INVISIBLE);
+            tvQtde.setVisibility(View.INVISIBLE);
+            quantidade.setVisibility(View.INVISIBLE);
+            view4.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override

@@ -9,4 +9,5 @@ public class Pedidos {
     public int usuario;
     public int quantidade;
     public int situacao;
+    public Pratos pratoObj;
 }

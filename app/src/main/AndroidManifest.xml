@@ -16,6 +16,9 @@
             android:label="@string/title_activity_cardapiodia"
             android:theme="@style/NoActionBar" />
         <activity
+            android:name=".AcompanhamentoPedidosActivity"
+            android:label="@string/title_activity_acompanhamento_pedidos" />
+        <activity
             android:name=".cardapiosemanal_clientes"
             android:label="@string/title_activity_cardapiosemanal_clientes"
             android:theme="@style/NoActionBar" />

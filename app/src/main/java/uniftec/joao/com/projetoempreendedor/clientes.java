@@ -32,7 +32,7 @@ public class clientes extends ActivityBase {
     {
 
         Sessao.descricaoDiaSemana = weekDayDescription();
-        Sessao.diaSemana = weekDay();
+        Sessao.diaSemana = Utilidades.WeekDay();
         Intent i = new Intent(this, cardapiodia.class);
         startActivity(i);
     }
@@ -42,29 +42,7 @@ public class clientes extends ActivityBase {
         Intent i = new Intent(this, cardapiosemanal_clientes.class);
         startActivity(i);
     }
-    public String weekDay() {
 
-        Calendar calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_WEEK);
-
-        switch (day) {
-            case Calendar.MONDAY:
-                return "1";
-            case Calendar.TUESDAY:
-                return "2";
-            case Calendar.WEDNESDAY:
-                return "3";
-            case Calendar.THURSDAY:
-                return "4";
-            case Calendar.FRIDAY:
-                return "5";
-            case Calendar.SATURDAY:
-                return "6";
-            case Calendar.SUNDAY:
-                return "7";
-        }
-        return "";
-    }
     public String weekDayDescription() {
 
         Calendar calendar = Calendar.getInstance();
@@ -95,6 +73,10 @@ public class clientes extends ActivityBase {
             case R.id.AlterarSenha:
                 Intent i = new Intent(this, alterarSenha.class);
                 startActivity(i);
+                break;
+            case R.id.MeusPedidos:
+                Intent v = new Intent(this, AcompanhamentoPedidosActivity.class);
+                startActivity(v);
                 break;
             default:
                 return super.onOptionsItemSelected(item);
