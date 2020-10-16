@@ -66,7 +66,7 @@ public class editarPratos extends ActivityBase {
             ingredientes.add(gson.fromJson(gson.toJson(pratosIngredientes), Ingredientes.class));
         }
 
-        final PratosIngredientesAdapter pratosIngredientesAdapter = new PratosIngredientesAdapter(this, R.layout.custompratoingredientes, ingredientes);
+        final PratosIngredientesAdapter pratosIngredientesAdapter = new PratosIngredientesAdapter(this, R.layout.custompratosingredientescadastro, ingredientes);
         mListView.setAdapter(pratosIngredientesAdapter);
         editTextNome.setText(pratos.nome);
 

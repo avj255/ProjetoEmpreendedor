@@ -14,7 +14,7 @@
         android:layout_marginTop="4dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
-        app:layout_constraintTop_toBottomOf="@+id/tvNomeIngredientes"
+        app:layout_constraintTop_toBottomOf="@+id/tvNomePratos"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteX="1dp"
         tools:srcCompat="@tools:sample/avatars" />

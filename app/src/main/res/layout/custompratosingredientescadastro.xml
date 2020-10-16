@@ -6,18 +6,32 @@
     android:layout_height="wrap_content"
     android:background="@color/Branco">
 
+    <ImageButton
+        android:id="@+id/botaoExcluirIngrediente"
+        android:layout_width="31dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="256dp"
+        android:background="#FFFFFF"
+        android:src="@drawable/lixo"
+        android:text="Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.737"
+        app:layout_constraintStart_toEndOf="@+id/tvCadastroPratosIngredientes"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvNomeIngredientes"
+        android:id="@+id/tvCadastroPratosIngredientes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
         android:fontFamily="serif"
         android:text="Ingredientes"
         android:textColor="@color/Preto"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

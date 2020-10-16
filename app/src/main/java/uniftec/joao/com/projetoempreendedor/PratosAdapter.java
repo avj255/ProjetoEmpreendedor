@@ -33,7 +33,7 @@ public class PratosAdapter extends ArrayAdapter<Pratos> {
         LayoutInflater layoutInflater = LayoutInflater.from(getContext());
         View view = layoutInflater.inflate(R.layout.custompratos, parent, false);
 
-        TextView tvNomePrato = (TextView) view.findViewById(R.id.tvNomeIngredientes);
+        TextView tvNomePrato = (TextView) view.findViewById(R.id.tvNomePratos);
         tvNomePrato.setText(prato.nome);
 
         if (prato.foto != null) {

@@ -56,7 +56,7 @@ public class cardapiodia extends ActivityBase {
 
         for (Pratos_DiaSemana pratosDia : pratosDiaSemana)
         {
-            pratos.add(gson.fromJson(gson.toJson(pratosDia), Pratos.class));
+            pratos.add(gson.fromJson(gson.toJson(pratosDia.prato), Pratos.class));
         }
 
         final PratosAdapter pratosAdapter = new PratosAdapter(this, R.layout.custompratos, pratos);
