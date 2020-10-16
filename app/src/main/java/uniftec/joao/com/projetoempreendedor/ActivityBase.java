@@ -52,6 +52,7 @@ public class ActivityBase extends AppCompatActivity {
                     RetornoGET(response);
                 }
 
+
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {

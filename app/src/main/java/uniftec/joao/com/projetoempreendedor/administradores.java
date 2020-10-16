@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class administradores extends AppCompatActivity {
 
@@ -19,6 +20,33 @@ public class administradores extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_administrador, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    public void EditarCardapios(View view)
+    {
+
+      //  Sessao.descricaoDiaSemana = weekDayDescription();
+      //  Sessao.diaSemana = Utilidades.WeekDay();
+      //  Intent i = new Intent(this, cardapiodia.class);
+      //  startActivity(i);
+    }
+
+    public void CadastrarIngredientes(View view)
+    {
+
+        //Sessao.descricaoDiaSemana = weekDayDescription();
+        //Sessao.diaSemana = Utilidades.WeekDay();
+        //Intent i = new Intent(this, cardapiodia.class);
+       // startActivity(i);
+    }
+
+    public void CadastrarPratos(View view)
+    {
+
+       // Sessao.descricaoDiaSemana = weekDayDescription();
+        //Sessao.diaSemana = Utilidades.WeekDay();
+        Intent i = new Intent(this, cadastrarPratos.class);
+        startActivity(i);
     }
 
     @Override

@@ -10,4 +10,5 @@ public class Sessao {
     public static String descricaoDiaSemana;
     public static Pratos prato;
     public static Boolean realizapedido;
+    public static Integer idPrato;
 }

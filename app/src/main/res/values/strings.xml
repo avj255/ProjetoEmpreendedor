@@ -7,6 +7,9 @@
     <string name="entrar">Entrar</string>
     <string name="cadastrar">Cadastrar</string>
     <string name="senha">Senha</string>
+    <string name="cadastrarPratos">Cadastrar Pratos</string>
+    <string name="cadastrarIngredientes">Cadastrar Ingredientes</string>
+    <string name="editarCardapios">Editar Cardápios</string>
     <string name="cardapioDia">Cardápio do Dia</string>
     <string name="cardapioSemanal">Cardápio Semanal</string>
     <string name="cardapioSegunda">Segunda-Feira</string>
@@ -28,4 +31,5 @@
     <string name="title_activity_cardapiodia">cardapiodia</string>
     <string name="title_activity_pratos">pratos</string>
     <string name="title_activity_acompanhamento_pedidos">Meus Pedidos</string>
+    <string name="title_activity_cadastrar_pratos">cadastrarPratos</string>
 </resources>

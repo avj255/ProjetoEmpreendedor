@@ -8,9 +8,14 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+        <activity android:name=".editarPratos"></activity>
+        <activity
+            android:name=".cadastrarPratos"
+            android:label="@string/title_activity_cadastrar_pratos"
+            android:theme="@style/NoActionBar" />
         <activity
             android:name=".pratos"
-            android:label="@string/title_activity_pratos"/>
+            android:label="@string/title_activity_pratos" />
         <activity
             android:name=".cardapiodia"
             android:label="@string/title_activity_cardapiodia"

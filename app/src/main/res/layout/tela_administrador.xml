@@ -14,6 +14,56 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"/>
+        tools:layout_editor_absoluteY="0dp">
+
+        <Button
+            android:id="@+id/botaoEditarCardapios"
+            style="@style/CustomBotao"
+            android:layout_width="363dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="24dp"
+            android:onClick="EditarCardapios"
+            android:text="@string/editarCardapios"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/botaoCadastrarIngredientes" />
+
+        <Button
+            android:id="@+id/botaoCadastrarPratos"
+            style="@style/CustomBotao"
+            android:layout_width="363dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="36dp"
+            android:onClick="CadastrarPratos"
+            android:text="@string/cadastrarPratos"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+        <Button
+            android:id="@+id/botaoCadastrarIngredientes"
+            style="@style/CustomBotao"
+            android:layout_width="363dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="24dp"
+            android:onClick="CadastrarIngredientes"
+            android:text="@string/cadastrarIngredientes"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/botaoCadastrarPratos" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="88dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/restauranteaj" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

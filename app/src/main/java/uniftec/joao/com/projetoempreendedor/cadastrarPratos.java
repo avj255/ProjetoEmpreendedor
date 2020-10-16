@@ -1,48 +1,49 @@
 package uniftec.joao.com.projetoempreendedor;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.android.volley.VolleyError;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
-
-import com.android.volley.VolleyError;
-import com.google.gson.Gson;
 
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import uniftec.joao.com.projetoempreendedor.Entidades.Pratos;
 import uniftec.joao.com.projetoempreendedor.Entidades.Pratos_DiaSemana;
 
-public class cardapiodia extends ActivityBase {
+public class cadastrarPratos  extends ActivityBase {
 
-    TextView diaSemana;
     ListView mListView;
     ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tela_cardapiodia);
-        diaSemana = findViewById(R.id.textViewDiaSemana);
-        diaSemana.setText(Sessao.descricaoDiaSemana);
-        mListView = findViewById(R.id.ListaIngredientes);
-        progressBar = findViewById(R.id.progressBar);
-
-        atualizarListaPratos();
+        setContentView(R.layout.tela_cadastrarpratos);
+        mListView = findViewById(R.id.listaPratos);
+        progressBar = findViewById(R.id.progressBarCadastroPratos);
+        atualizarListaPratosCadastro();
     }
 
-    void atualizarListaPratos()
+    void atualizarListaPratosCadastro()
     {
         progressBar.setVisibility(View.VISIBLE);
         desabilitaInteracao();
-        RequisicaoGET(cServidor + "/Pratos_DiaSemana/"+ Sessao.diaSemana);
+        RequisicaoGET(cServidor + "/Pratos/ListaPratos");
     }
 
     @Override
@@ -52,14 +53,9 @@ public class cardapiodia extends ActivityBase {
         List<Pratos> pratos = new ArrayList<Pratos>();
 
         Gson gson = new Gson();
-        Pratos_DiaSemana[] pratosDiaSemana = gson.fromJson(resposta.toString(), Pratos_DiaSemana[].class);
+        pratos = Arrays.asList(gson.fromJson(resposta.toString(), Pratos[].class));
 
-        for (Pratos_DiaSemana pratosDia : pratosDiaSemana)
-        {
-            pratos.add(gson.fromJson(gson.toJson(pratosDia), Pratos.class));
-        }
-
-        final PratosAdapter pratosAdapter = new PratosAdapter(this, R.layout.custompratos, pratos);
+        final PratosCadastroAdapter pratosAdapter = new PratosCadastroAdapter(this, R.layout.customcadastropratos, pratos);
         mListView.setAdapter(pratosAdapter);
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
@@ -68,8 +64,8 @@ public class cardapiodia extends ActivityBase {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                Sessao.prato = pratosAdapter.getItem(i);
-                Intent j = new Intent(cardapiodia.this, pratos.class);
+                Sessao.idPrato = pratosAdapter.getItem(i).pratoID;
+                Intent j = new Intent(cadastrarPratos.this, editarPratos.class);
                 startActivity(j);
             }
         });
@@ -77,11 +73,10 @@ public class cardapiodia extends ActivityBase {
         progressBar.setVisibility(View.INVISIBLE);
         habilitaInteracao();
     }
-
-
     @Override
     void ErroRequisicao(VolleyError erro) {
         super.ErroRequisicao(erro);
-        atualizarListaPratos();
+        atualizarListaPratosCadastro();
     }
+
 }
