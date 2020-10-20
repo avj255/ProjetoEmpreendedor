@@ -126,7 +126,6 @@ public class login extends ActivityBase  implements OnShowListener, OnClickListe
     {
         Intent i = new Intent(this, cadastro.class);
         startActivity(i);
-        finish();
     }
 
     public void openDialogRecuperarSenha()

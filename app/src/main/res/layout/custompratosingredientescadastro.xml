@@ -4,20 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/Branco">
+    android:background="@color/Branco"
+    android:visibility="visible">
 
     <ImageButton
         android:id="@+id/botaoExcluirIngrediente"
-        android:layout_width="31dp"
-        android:layout_height="28dp"
-        android:layout_marginStart="256dp"
+        android:layout_width="22dp"
+        android:layout_height="17dp"
+        android:layout_marginEnd="16dp"
         android:background="#FFFFFF"
         android:src="@drawable/lixo"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.737"
-        app:layout_constraintStart_toEndOf="@+id/tvCadastroPratosIngredientes"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

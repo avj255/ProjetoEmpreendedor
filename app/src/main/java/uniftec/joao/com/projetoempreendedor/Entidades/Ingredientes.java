@@ -9,4 +9,8 @@ public class Ingredientes {
     public Double peso;
     public Double calorias;
     public List<Pratos_Ingredientes> pratos_Ingredientes;
+
+    public int getAge() {
+        return ingredienteID;
+    }
 }

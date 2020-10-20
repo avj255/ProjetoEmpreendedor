@@ -16,15 +16,6 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
-        <TextView
-            android:id="@+id/branco4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:layout_constraintRight_toRightOf="@+id/botaoExcluir"
-            app:layout_constraintTop_toBottomOf="@+id/botaoExcluir" />
-
-
         <Button
             android:id="@+id/botaoExcluir"
             style="@style/CustomBotao"
@@ -45,7 +36,7 @@
             android:layout_width="363dp"
             android:layout_height="68dp"
             android:layout_marginTop="16dp"
-            android:onClick="RegistrarPedido"
+            android:onClick="SalvarPrato"
             android:text="Salvar"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -55,14 +46,23 @@
         <EditText
             android:id="@+id/editTextValorPrato"
             style="@style/CustomEdit"
-            android:layout_width="54dp"
-            android:layout_height="38dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="46dp"
+            android:layout_height="28dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="9dp"
             android:ems="10"
             android:inputType="number"
-            app:layout_constraintStart_toEndOf="@+id/textViewPrato5"
-            app:layout_constraintTop_toBottomOf="@+id/ListViewIngredientes" />
+            android:lineSpacingExtra="8sp"
+            android:paddingStart="0dp"
+            android:paddingLeft="0dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="6dp"
+            android:textSize="17dp"
+            app:layout_constraintStart_toEndOf="@+id/textViewPrato3"
+            app:layout_constraintTop_toBottomOf="@+id/view2" />
+
 
         <EditText
             android:id="@+id/edtitTextNomePrato"
@@ -71,7 +71,6 @@
             android:layout_height="39dp"
             android:layout_marginTop="28dp"
             android:ems="10"
-            android:hint="Prato"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.389"
@@ -82,7 +81,7 @@
             android:id="@+id/ImagePratoEditar"
             android:layout_width="366dp"
             android:layout_height="130dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="28dp"
             android:adjustViewBounds="true"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
@@ -117,6 +116,40 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewPratoAtualizado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/LoginInvalido"
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.506"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ListViewIngredientes" />
+
+        <TextView
+            android:id="@+id/textViewPrato3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="serif"
+            android:text="$"
+            android:textColor="@color/Preto"
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@+id/textViewPrato5"
+            app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+        <TextView
+            android:id="@+id/branco4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintRight_toRightOf="@+id/botaoExcluir"
+            app:layout_constraintTop_toBottomOf="@+id/botaoExcluir" />
 
         <TextView
             android:id="@+id/textViewPrato2"
@@ -186,6 +219,37 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewPrato2" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/botaoEditarImagem"
+            android:layout_width="21dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="24dp"
+            android:clickable="true"
+            android:foreground="@drawable/galeria"
+            android:onClick="EditarImagem"
+            android:scaleType="center"
+            app:backgroundTint="@color/CinzaClaro"
+            app:fabSize="mini"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtitTextNomePrato" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/botaoAdicionarIngredientes"
+            android:layout_width="22dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            android:clickable="true"
+            android:foreground="@android:drawable/ic_input_add"
+            android:onClick="AdicionarIngrediente"
+            android:scaleType="center"
+            app:backgroundTint="@color/CinzaClaro"
+            app:fabSize="mini"
+            app:layout_constraintBottom_toTopOf="@+id/view3"
+            app:layout_constraintStart_toEndOf="@+id/textViewPrato2"
+            app:layout_constraintTop_toBottomOf="@+id/ImagePratoEditar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -39,6 +39,15 @@ public class cadastrarPratos  extends ActivityBase {
         atualizarListaPratosCadastro();
     }
 
+    public void AdicionarPrato(View view)
+    {
+
+        Sessao.idPrato = null;
+        Intent j = new Intent(this, editarPratos.class);
+        startActivity(j);
+    }
+
+
     void atualizarListaPratosCadastro()
     {
         progressBar.setVisibility(View.VISIBLE);
@@ -78,5 +87,7 @@ public class cadastrarPratos  extends ActivityBase {
         super.ErroRequisicao(erro);
         atualizarListaPratosCadastro();
     }
+
+
 
 }
