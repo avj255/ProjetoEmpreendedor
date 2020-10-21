@@ -69,6 +69,7 @@
             android:layout_height="39dp"
             android:layout_marginTop="28dp"
             android:ems="10"
+            android:hint="Nome do Prato"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.389"
