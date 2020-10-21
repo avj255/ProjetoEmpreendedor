@@ -76,7 +76,9 @@ public class editarPratos extends ActivityBase {
         }
         else
         {
-            atualizaListaIngredientes();
+            List<Ingredientes> ingredientes = new ArrayList<Ingredientes>();
+            pratosIngredientesAdapter = new PratosEditarAdapter(this, R.layout.custompratosingredientescadastro, ingredientes);
+            mListView.setAdapter(pratosIngredientesAdapter);
         }
         editouImagem = false;
     }
@@ -111,6 +113,7 @@ public class editarPratos extends ActivityBase {
             prato.foto = null;
 
         prato.pratos_Ingredientes = new ArrayList<Pratos_Ingredientes>();
+        prato.modopreparo = "";
 
         for (Ingredientes ingrediente: pratosIngredientesAdapter.ArrayIngredientes)
         {
@@ -201,13 +204,49 @@ public class editarPratos extends ActivityBase {
             Gson gson = new Gson();
             arrayIngredientes = gson.fromJson(resposta.toString(), Ingredientes[].class);
 
-            if (Sessao.idPrato == null)
-            {
-                List<Ingredientes> ingredientes = new ArrayList<Ingredientes>();
-                pratosIngredientesAdapter = new PratosEditarAdapter(this, R.layout.custompratosingredientescadastro, ingredientes);
-                mListView.setAdapter(pratosIngredientesAdapter);
-            }
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(this,R.style.AlertDialogTheme);
+            View mView = getLayoutInflater().inflate(R.layout.tela_dialogingredientes, null);
+            mBuilder.setTitle("Escolha um Ingrediente");
+            final Spinner mSpinner = (Spinner) mView.findViewById(R.id.Spinneringredientes);
 
+            final AdicionarIngredientesAdapter adapter = new AdicionarIngredientesAdapter(editarPratos.this,
+                    android.R.layout.simple_spinner_item,
+                    arrayIngredientes);
+            mSpinner.setAdapter(adapter); // Set the custom adapter to the spinner
+
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            mSpinner.setAdapter(adapter);
+            mBuilder.setView(mView);
+            mBuilder.setPositiveButton("Adicionar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Boolean ExisteIngrediente = false;
+                    Ingredientes ingrediente = new Ingredientes();
+                    ingrediente.nome = adapter.getItem(mSpinner.getSelectedItemPosition()).nome;
+                    ingrediente.ingredienteID = adapter.getItem(mSpinner.getSelectedItemPosition()).ingredienteID;
+
+                    for(Ingredientes list : pratosIngredientesAdapter.ArrayIngredientes){
+                        if (list.nome.equals(ingrediente.nome))
+                        {
+                            ExisteIngrediente = true;
+                        }
+                    }
+                    if(!ExisteIngrediente)
+                    {
+                        pratosIngredientesAdapter.insert(ingrediente, 0);
+                    }
+                    else
+                    {
+                        AlertDialog.Builder dlg = new AlertDialog.Builder(editarPratos.this,R.style.AlertDialogTheme);
+                        dlg.setTitle("Aviso");
+                        dlg.setMessage("Esse Ingrediente já está na lista!");
+                        dlg.setNeutralButton("OK",null);
+                        dlg.show();
+                    }
+                }
+            });
+            AlertDialog b = mBuilder.create();
+            b.show();
             progressBar.setVisibility(View.INVISIBLE);
             habilitaInteracao();
         }
@@ -235,7 +274,8 @@ public class editarPratos extends ActivityBase {
                     Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                     ImagemPrato.setImageBitmap(decodedByte);
                 }
-                atualizaListaIngredientes();
+                progressBar.setVisibility(View.INVISIBLE);
+                habilitaInteracao();
             }
     }
 
@@ -246,49 +286,7 @@ public class editarPratos extends ActivityBase {
 
     public void AdicionarIngrediente(View view)
     {
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(this,R.style.AlertDialogTheme);
-        View mView = getLayoutInflater().inflate(R.layout.tela_dialogingredientes, null);
-        mBuilder.setTitle("Escolha um Ingrediente");
-        final Spinner mSpinner = (Spinner) mView.findViewById(R.id.Spinneringredientes);
-
-        final AdicionarIngredientesAdapter adapter = new AdicionarIngredientesAdapter(editarPratos.this,
-                android.R.layout.simple_spinner_item,
-                arrayIngredientes);
-        mSpinner.setAdapter(adapter); // Set the custom adapter to the spinner
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mSpinner.setAdapter(adapter);
-        mBuilder.setView(mView);
-        mBuilder.setPositiveButton("Adicionar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Boolean ExisteIngrediente = false;
-                Ingredientes ingrediente = new Ingredientes();
-                ingrediente.nome = adapter.getItem(mSpinner.getSelectedItemPosition()).nome;
-                ingrediente.ingredienteID = adapter.getItem(mSpinner.getSelectedItemPosition()).ingredienteID;
-
-                for(Ingredientes list : pratosIngredientesAdapter.ArrayIngredientes){
-                    if (list.nome.equals(ingrediente.nome))
-                    {
-                        ExisteIngrediente = true;
-                    }
-                }
-                if(!ExisteIngrediente)
-                {
-                    pratosIngredientesAdapter.insert(ingrediente, 0);
-                }
-                else
-                {
-                    AlertDialog.Builder dlg = new AlertDialog.Builder(editarPratos.this,R.style.AlertDialogTheme);
-                    dlg.setTitle("Aviso");
-                    dlg.setMessage("Esse Ingrediente já está na lista!");
-                    dlg.setNeutralButton("OK",null);
-                    dlg.show();
-                }
-            }
-        });
-        AlertDialog b = mBuilder.create();
-        b.show();
+        atualizaListaIngredientes();
     }
 
 
@@ -313,7 +311,7 @@ public class editarPratos extends ActivityBase {
             try {
                 InputStream inputStream = this.getContentResolver().openInputStream(data.getData());
                 Bitmap bitmap=BitmapFactory.decodeStream(inputStream,null,null);
-                bitmap = resizeImage(this, bitmap, 300, 300);
+                bitmap = resizeImage(this, bitmap, 100, 100);
                 ImagemPrato.setImageBitmap(bitmap);
                 editouImagem = true;
             } catch (FileNotFoundException e) {
