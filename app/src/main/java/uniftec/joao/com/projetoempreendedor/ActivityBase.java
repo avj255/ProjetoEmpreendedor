@@ -119,14 +119,63 @@ public class ActivityBase extends AppCompatActivity {
                 }
             };
 
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                    1000000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
             requestQueue.add(stringRequest);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
+    void RequisicaoDELETE(String url){
+
+        try {
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+            JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.DELETE, url, null, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    RetornoDELETE(response);
+                }
+
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    ErroRequisicao(error);
+                }
+            }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    HashMap<String, String> params = new HashMap<String, String>();
+                    String creds = String.format("%s:%s","tccandrejoao","AndreJoao*");
+                    String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.NO_WRAP);
+                    params.put("Authorization", auth);
+                    return params;
+                }
+            };
+
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(
+                    1000000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+            requestQueue.add(stringRequest);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     void RetornoGET(JSONArray resposta) {}
     void RetornoPOST(JSONObject resposta){}
+    void RetornoDELETE(JSONObject resposta) {}
     void ErroRequisicao(VolleyError erro){
         Toast.makeText(this, "Ocorreu uma falha ao tentar se conectar com o servidor", Toast.LENGTH_LONG).show();
     }
