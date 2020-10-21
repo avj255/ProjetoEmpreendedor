@@ -22,7 +22,7 @@
             android:layout_width="363dp"
             android:layout_height="68dp"
             android:layout_marginTop="12dp"
-            android:onClick="RegistrarPedido"
+            android:onClick="excluirPrato"
             android:text="Excluir"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,9 +46,8 @@
         <EditText
             android:id="@+id/editTextValorPrato"
             style="@style/CustomEdit"
-            android:layout_width="46dp"
+            android:layout_width="80dp"
             android:layout_height="28dp"
-            android:layout_marginStart="2dp"
             android:layout_marginTop="9dp"
             android:ems="10"
             android:inputType="number"
@@ -60,9 +59,8 @@
             android:paddingRight="0dp"
             android:paddingBottom="6dp"
             android:textSize="17dp"
-            app:layout_constraintStart_toEndOf="@+id/textViewPrato3"
+            app:layout_constraintStart_toEndOf="@+id/textViewPrato5"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
-
 
         <EditText
             android:id="@+id/edtitTextNomePrato"
@@ -76,6 +74,7 @@
             app:layout_constraintHorizontal_bias="0.389"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <ImageView
             android:id="@+id/ImagePratoEditar"
@@ -129,19 +128,6 @@
             app:layout_constraintHorizontal_bias="0.506"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ListViewIngredientes" />
-
-        <TextView
-            android:id="@+id/textViewPrato3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:fontFamily="serif"
-            android:text="$"
-            android:textColor="@color/Preto"
-            android:textSize="18sp"
-            app:layout_constraintStart_toEndOf="@+id/textViewPrato5"
-            app:layout_constraintTop_toBottomOf="@+id/view2" />
 
         <TextView
             android:id="@+id/branco4"
@@ -219,6 +205,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewPrato2" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/botaoExcluirImagem"
+            android:layout_width="21dp"
+            android:layout_height="21dp"
+            android:layout_marginTop="7dp"
+            android:layout_marginEnd="8dp"
+            android:clickable="true"
+            android:foreground="@android:drawable/ic_delete"
+            android:onClick="ExcluirImagem"
+            android:scaleType="center"
+            app:backgroundTint="@color/CinzaClaro"
+            app:fabSize="mini"
+            app:layout_constraintEnd_toStartOf="@+id/botaoEditarImagem"
+            app:layout_constraintTop_toBottomOf="@+id/edtitTextNomePrato" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/botaoEditarImagem"

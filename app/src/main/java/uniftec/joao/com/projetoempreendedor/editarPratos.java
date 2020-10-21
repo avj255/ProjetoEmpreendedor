@@ -12,8 +12,10 @@ import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -21,29 +23,20 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.RequiresApi;
-
 import com.android.volley.VolleyError;
 import com.google.gson.Gson;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import uniftec.joao.com.projetoempreendedor.Entidades.Ingredientes;
 import uniftec.joao.com.projetoempreendedor.Entidades.Pratos;
 import uniftec.joao.com.projetoempreendedor.Entidades.Pratos_Ingredientes;
 import uniftec.joao.com.projetoempreendedor.Entidades.Resposta;
-import uniftec.joao.com.projetoempreendedor.Entidades.Usuarios;
 
 public class editarPratos extends ActivityBase {
 
@@ -57,6 +50,7 @@ public class editarPratos extends ActivityBase {
     PratosEditarAdapter pratosIngredientesAdapter;
     Pratos[] pratos;
     Boolean editouImagem;
+    Button btnExcluir;
 
     private static final int PICK_PHOTO_FOR_AVATAR = 0;
 
@@ -70,16 +64,70 @@ public class editarPratos extends ActivityBase {
         editValor = findViewById(R.id.editTextValorPrato);
         ImagemPrato = findViewById(R.id.ImagePratoEditar);
         textviewAtualizaPrato = findViewById(R.id.textViewPratoAtualizado);
+        btnExcluir = findViewById(R.id.botaoExcluir);
+        editValor.addTextChangedListener(new NumberTextWatcher(editValor, "#,###"));
+
         if (!(Sessao.idPrato == null))
         {
-            atualizarPratos();
+            btnExcluir.setEnabled(true);
+            getPrato();
         }
         else
         {
+            btnExcluir.setEnabled(false);
             List<Ingredientes> ingredientes = new ArrayList<Ingredientes>();
             pratosIngredientesAdapter = new PratosEditarAdapter(this, R.layout.custompratosingredientescadastro, ingredientes);
             mListView.setAdapter(pratosIngredientesAdapter);
         }
+        editTextNome.requestFocus();
+        editouImagem = false;
+    }
+    private boolean isCampoVazio(String valor)
+    {
+        return (TextUtils.isEmpty(valor) || valor.trim().isEmpty());
+    }
+
+    private boolean validaCamposPrato()
+    {
+        Boolean res = false;
+        String resposta = "";
+        String nome   = editTextNome.getText().toString();
+        String valor = editValor.getText().toString();
+
+        if (res = isCampoVazio(nome))
+        {
+            editTextNome.requestFocus();
+            resposta = "O Campo \"Nome\" deve ser preenchido.";
+        }
+        else
+        if (res = isCampoVazio(valor))
+        {
+            editValor.requestFocus();
+            resposta = "O Campo \"Valor\" deve ser preenchido.";
+        }
+        else
+            if (res = valor.equals("0"))
+            {
+                editValor.requestFocus();
+                resposta = "O Campo \"Valor\" deve ser preenchido.";
+            }
+
+        if (res)
+        {
+            androidx.appcompat.app.AlertDialog.Builder dlg = new androidx.appcompat.app.AlertDialog.Builder(this,R.style.AlertDialogTheme);
+            dlg.setTitle("Aviso");
+            dlg.setMessage(resposta);
+            dlg.setNeutralButton("OK",null);
+            dlg.show();
+            return false;
+        }
+
+        return true;
+    }
+
+    public void ExcluirImagem(View view)
+    {
+        ImagemPrato.setImageResource(0);
         editouImagem = false;
     }
 
@@ -88,53 +136,46 @@ public class editarPratos extends ActivityBase {
         AtualizaSalvarPrato();
     }
 
-    public void AtualizaSalvarPrato(){
-
-        Pratos prato = new Pratos();
-
-        prato.nome = editTextNome.getText().toString();
-        prato.valor = Double.parseDouble(editValor.getText().toString());
-
-        //encode image to base64 string
-        progressBar.setVisibility(View.VISIBLE);
-        desabilitaInteracao();
-
-        if (editouImagem)
-        {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            BitmapDrawable drawable = (BitmapDrawable) ImagemPrato.getDrawable();
-            Bitmap bitmap = drawable.getBitmap();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-            byte[] imageBytes = baos.toByteArray();
-            String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-            prato.foto = imageString;
-        }
-        else
-            prato.foto = null;
-
-        prato.pratos_Ingredientes = new ArrayList<Pratos_Ingredientes>();
-        prato.modopreparo = "";
-
-        for (Ingredientes ingrediente: pratosIngredientesAdapter.ArrayIngredientes)
-        {
-            Pratos_Ingredientes pi = new Pratos_Ingredientes();
-            pi.ingredienteID = ingrediente.ingredienteID;
-            pi.pratoID = null;
-            prato.pratos_Ingredientes.add(pi);
-        }
-
-        if (Sessao.idPrato == null)
-            prato.pratoID = 0;
-
-        tipoRequisicao = "SalvarPrato";
-        RequisicaoPOST(cServidor + "/Pratos", prato);
+    public void excluirPrato(View view)
+    {
+        DeletarPrato();
     }
 
 
+    private void DeletarPrato()
+    {
+        if (!(pratos == null))
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setTitle("Confirmação");
+            builder.setMessage("Deseja Excluir o prato:"+pratos[0].nome+"?");
+
+            builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+
+                public void onClick(DialogInterface dialog, int which) {
+                    progressBar.setVisibility(View.VISIBLE);
+                    desabilitaInteracao();
+                    tipoRequisicao = "CarregarPrato";
+                    RequisicaoDELETE(cServidor + "/Pratos/"+ pratos[0].pratoID);
+                    dialog.dismiss();
+                }
+            });
+
+            builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            AlertDialog alert = builder.create();
+            alert.show();
+
+        }
+    }
     @Override
-    void RetornoPOST(JSONObject resposta) {
-        progressBar.setVisibility(View.INVISIBLE);
-        habilitaInteracao();
+    void RetornoDELETE(JSONObject resposta) {
 
         Gson gson = new Gson();
         Resposta respostaCadastro = gson.fromJson(resposta.toString(), Resposta.class);
@@ -144,13 +185,97 @@ public class editarPratos extends ActivityBase {
             textviewAtualizaPrato.setText(respostaCadastro.descricao);
             textviewAtualizaPrato.setVisibility(View.VISIBLE);
         } else {
+            progressBar.setVisibility(View.INVISIBLE);
+            habilitaInteracao();
+            Toast.makeText(getApplicationContext(), "Prato Excluído com sucesso!", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(this, cadastrarPratos.class);
+            startActivity(i);
+        }
+    }
+
+    private Double stringMonetarioToDouble(String str) {
+        Double retorno = 0.0;
+        try {
+            boolean hasMask = ((str.indexOf("R$") > -1 || str.indexOf("$") > -1) && (str.indexOf(".") > -1 || str.indexOf(",") > -1));
+            if (hasMask) {
+                str = str.replaceAll("[R$]", "").replaceAll("\\,\\w+", "").replaceAll("\\.\\w+", "");
+            }
+            retorno = Double.parseDouble(str);
+        } catch (NumberFormatException e) {
+        }
+        return retorno;
+    }
+
+    private void AtualizaSalvarPrato(){
+
+        if (validaCamposPrato())
+        {
+            Pratos prato;
+            if (Sessao.idPrato == null)
+            {
+                prato = new Pratos();
+                prato.pratoID = 0;
+            }
+            else
+            {
+                prato = pratos[0];
+            }
+
+            prato.nome = editTextNome.getText().toString();
+            prato.valor = stringMonetarioToDouble(editValor.getText().toString());
+            progressBar.setVisibility(View.VISIBLE);
+            desabilitaInteracao();
+
+            if (editouImagem)
+            {
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                BitmapDrawable drawable = (BitmapDrawable) ImagemPrato.getDrawable();
+                Bitmap bitmap = drawable.getBitmap();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] imageBytes = baos.toByteArray();
+                String imageString = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+                prato.foto = imageString;
+            }
+            else
+                prato.foto = null;
+
+            prato.pratos_Ingredientes = new ArrayList<Pratos_Ingredientes>();
+            prato.modopreparo = "";
+
+            for (Ingredientes ingrediente: pratosIngredientesAdapter.ArrayIngredientes)
+            {
+                Pratos_Ingredientes pi = new Pratos_Ingredientes();
+                pi.ingredienteID = ingrediente.ingredienteID;
+                pi.pratoID = null;
+                prato.pratos_Ingredientes.add(pi);
+            }
+
+            tipoRequisicao = "SalvarPrato";
+            RequisicaoPOST(cServidor + "/Pratos", prato);
+        }
+    }
+
+
+
+    @Override
+    void RetornoPOST(JSONObject resposta) {
+        Gson gson = new Gson();
+        Resposta respostaCadastro = gson.fromJson(resposta.toString(), Resposta.class);
+
+        if (respostaCadastro.codigoRetorno == 2)
+        {
+            textviewAtualizaPrato.setText(respostaCadastro.descricao);
+            textviewAtualizaPrato.setVisibility(View.VISIBLE);
+        } else {
+            progressBar.setVisibility(View.INVISIBLE);
+            habilitaInteracao();
             Toast.makeText(getApplicationContext(), "Prato Atualizado com sucesso!", Toast.LENGTH_SHORT).show();
             Intent i = new Intent(this, cadastrarPratos.class);
             startActivity(i);
         }
     }
 
-     void atualizarPratos()
+     private void getPrato()
     {
         progressBar.setVisibility(View.VISIBLE);
         desabilitaInteracao();
@@ -158,7 +283,7 @@ public class editarPratos extends ActivityBase {
         RequisicaoGET(cServidor + "/Pratos/"+ Sessao.idPrato.toString());
         return;
     }
-    void atualizaListaIngredientes()
+    private void atualizaListaIngredientes()
     {
         progressBar.setVisibility(View.VISIBLE);
         desabilitaInteracao();
@@ -290,7 +415,7 @@ public class editarPratos extends ActivityBase {
     }
 
 
-    public void AtualizarImagem() {
+    private void AtualizarImagem() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
         startActivityForResult(intent, PICK_PHOTO_FOR_AVATAR);
@@ -328,7 +453,7 @@ public class editarPratos extends ActivityBase {
         }else
         if (tipoRequisicao.equals("CarregarPrato"))
         {
-            atualizarPratos();
+            getPrato();
         }
         else
         if (tipoRequisicao.equals("SalvarPrato"))
