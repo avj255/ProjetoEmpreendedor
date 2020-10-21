@@ -33,11 +33,8 @@ public class administradores extends AppCompatActivity {
 
     public void CadastrarIngredientes(View view)
     {
-
-        //Sessao.descricaoDiaSemana = weekDayDescription();
-        //Sessao.diaSemana = Utilidades.WeekDay();
-        //Intent i = new Intent(this, cardapiodia.class);
-       // startActivity(i);
+        Intent i = new Intent(this, IngredientesActivity.class);
+        startActivity(i);
     }
 
     public void CadastrarPratos(View view)

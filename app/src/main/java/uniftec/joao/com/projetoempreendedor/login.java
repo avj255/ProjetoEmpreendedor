@@ -55,14 +55,14 @@ public class login extends ActivityBase  implements OnShowListener, OnClickListe
         Sessao.usuarioLogado = new Usuarios();
 
         // Debug
-        Sessao.usuarioLogado.userID = 4;
-        Sessao.usuarioLogado.usuario = "Usuario Debug";
-        Sessao.usuarioLogado.nome = "Usuario Debug";
-        Sessao.usuarioLogado.administrador = 0;
+        //Sessao.usuarioLogado.userID = 4;
+        //Sessao.usuarioLogado.usuario = "Usuario Debug";
+        //Sessao.usuarioLogado.nome = "Usuario Debug";
+        //Sessao.usuarioLogado.administrador = 0;
 
-        Intent i = new Intent(this, administradores.class);
-        startActivity(i);
-        finish();
+        //Intent i = new Intent(this, administradores.class);
+        //startActivity(i);
+        //finish();
     }
 
     private boolean isCampoVazio(String valor)
