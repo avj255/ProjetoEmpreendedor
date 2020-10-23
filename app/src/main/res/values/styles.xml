@@ -5,6 +5,11 @@
         <item name="colorPrimary">@color/Branco</item>
     </style>
 
+    <style name="AppTheme2" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowMinWidthMajor">90%</item>
+        <item name="android:windowMinWidthMinor">90%</item>
+    </style>
+
     <style name="CustomBotao" parent="@android:style/Widget.Button">
         <item name="android:background">@drawable/rectanglebutton</item>
         <item name="android:textSize">18sp</item>
