@@ -2,6 +2,8 @@ package uniftec.joao.com.projetoempreendedor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -51,9 +53,31 @@ public class CadastroIngredienteActivity extends ActivityBase {
 
     public void ExcluirIngrediente(View view)
     {
-        progressBar.setVisibility(View.VISIBLE);
-        desabilitaInteracao();
-        RequisicaoDELETE(cServidor + "/Ingredientes/" + idIngrediente);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle("Confirmação");
+        builder.setMessage("Deseja Excluir o Ingrediente:"+edtNome.getText().toString()+"?");
+
+        builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                progressBar.setVisibility(View.VISIBLE);
+                desabilitaInteracao();
+                RequisicaoDELETE(cServidor + "/Ingredientes/" + idIngrediente);
+                dialog.dismiss();
+            }
+        });
+
+        builder.setNegativeButton("Não", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alert = builder.create();
+        alert.show();
+
     }
 
     public void SalvarIngrediente(View view)

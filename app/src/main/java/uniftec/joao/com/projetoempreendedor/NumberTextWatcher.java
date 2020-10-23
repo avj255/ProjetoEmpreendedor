@@ -42,7 +42,7 @@ public class NumberTextWatcher implements TextWatcher {
                 } else {
                     et.setText(dfnd.format(n));
                 }
-                et.setText("$".concat(et.getText().toString()));
+                et.setText("R$".concat(et.getText().toString()));
                 endlen = et.getText().length();
                 int sel = (cp + (endlen - inilen));
                 if (sel > 0 && sel < et.getText().length()) {

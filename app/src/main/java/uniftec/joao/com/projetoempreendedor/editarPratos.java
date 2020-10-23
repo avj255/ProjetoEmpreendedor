@@ -1,5 +1,6 @@
 package uniftec.joao.com.projetoempreendedor;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ClipData;
@@ -14,7 +15,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Base64;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -51,6 +54,7 @@ public class editarPratos extends ActivityBase {
     Pratos[] pratos;
     Boolean editouImagem;
     Button btnExcluir;
+    int listViewTouchAction;
 
     private static final int PICK_PHOTO_FOR_AVATAR = 0;
 
@@ -65,6 +69,7 @@ public class editarPratos extends ActivityBase {
         ImagemPrato = findViewById(R.id.ImagePratoEditar);
         textviewAtualizaPrato = findViewById(R.id.textViewPratoAtualizado);
         btnExcluir = findViewById(R.id.botaoExcluir);
+        setListViewScrollable(mListView);
         editValor.addTextChangedListener(new NumberTextWatcher(editValor, "#,###"));
 
         if (!(Sessao.idPrato == null))
@@ -81,6 +86,36 @@ public class editarPratos extends ActivityBase {
         }
         editTextNome.requestFocus();
         editouImagem = false;
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void setListViewScrollable(final ListView list) {
+        list.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                listViewTouchAction = event.getAction();
+                if (listViewTouchAction == MotionEvent.ACTION_MOVE)
+                {
+                    list.scrollBy(0, 1);
+                }
+                return false;
+            }
+        });
+        list.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view,
+                                             int scrollState) {
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem,
+                                 int visibleItemCount, int totalItemCount) {
+                if (listViewTouchAction == MotionEvent.ACTION_MOVE)
+                {
+                    list.scrollBy(0, -1);
+                }
+            }
+        });
     }
     private boolean isCampoVazio(String valor)
     {
