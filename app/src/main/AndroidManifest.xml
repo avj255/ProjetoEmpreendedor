@@ -19,7 +19,8 @@
         <activity android:name=".editarPratos" />
         <activity
             android:name=".cadastrarPratos"
-            android:label="@string/title_activity_cadastrar_pratos" />
+            android:label="@string/title_activity_cadastrar_pratos"
+            android:parentActivityName=".administradores"/>
         <activity
             android:name=".pratos"
             android:label="@string/title_activity_pratos" />

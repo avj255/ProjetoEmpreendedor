@@ -41,7 +41,6 @@ public class cadastrarPratos  extends ActivityBase {
 
     public void AdicionarPrato(View view)
     {
-
         Sessao.idPrato = null;
         Intent j = new Intent(this, editarPratos.class);
         startActivity(j);

@@ -3,7 +3,6 @@ package uniftec.joao.com.projetoempreendedor;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,7 +10,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -41,7 +39,7 @@ import uniftec.joao.com.projetoempreendedor.Entidades.Pratos;
 import uniftec.joao.com.projetoempreendedor.Entidades.Pratos_Ingredientes;
 import uniftec.joao.com.projetoempreendedor.Entidades.Resposta;
 
-public class editarPratos extends ActivityBase {
+public class editarPratos extends ActivityBase  {
 
     ProgressBar progressBar;
     EditText editTextNome;
@@ -70,7 +68,6 @@ public class editarPratos extends ActivityBase {
         textviewAtualizaPrato = findViewById(R.id.textViewPratoAtualizado);
         btnExcluir = findViewById(R.id.botaoExcluir);
         setListViewScrollable(mListView);
-        editValor.addTextChangedListener(new NumberTextWatcher(editValor, "#,###"));
 
         if (!(Sessao.idPrato == null))
         {
@@ -223,22 +220,8 @@ public class editarPratos extends ActivityBase {
             progressBar.setVisibility(View.INVISIBLE);
             habilitaInteracao();
             Toast.makeText(getApplicationContext(), "Prato Excluído com sucesso!", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(this, cadastrarPratos.class);
-            startActivity(i);
+            finish();
         }
-    }
-
-    private Double stringMonetarioToDouble(String str) {
-        Double retorno = 0.0;
-        try {
-            boolean hasMask = ((str.indexOf("R$") > -1 || str.indexOf("$") > -1) && (str.indexOf(".") > -1 || str.indexOf(",") > -1));
-            if (hasMask) {
-                str = str.replaceAll("[R$]", "").replaceAll("\\,\\w+", "").replaceAll("\\.\\w+", "");
-            }
-            retorno = Double.parseDouble(str);
-        } catch (NumberFormatException e) {
-        }
-        return retorno;
     }
 
     private void AtualizaSalvarPrato(){
@@ -257,7 +240,7 @@ public class editarPratos extends ActivityBase {
             }
 
             prato.nome = editTextNome.getText().toString();
-            prato.valor = stringMonetarioToDouble(editValor.getText().toString());
+            prato.valor = Double.parseDouble(editValor.getText().toString());
             progressBar.setVisibility(View.VISIBLE);
             desabilitaInteracao();
 
@@ -305,8 +288,7 @@ public class editarPratos extends ActivityBase {
             progressBar.setVisibility(View.INVISIBLE);
             habilitaInteracao();
             Toast.makeText(getApplicationContext(), "Prato Atualizado com sucesso!", Toast.LENGTH_SHORT).show();
-            Intent i = new Intent(this, cadastrarPratos.class);
-            startActivity(i);
+            finish();
         }
     }
 
