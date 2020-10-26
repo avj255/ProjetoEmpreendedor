@@ -6,6 +6,7 @@
     <string name="usuario">Usuário</string>
     <string name="entrar">Entrar</string>
     <string name="cadastrar">Cadastrar</string>
+    <string name="pedidos">Pedidos</string>
     <string name="senha">Senha</string>
     <string name="cadastrarPratos">Cadastrar Pratos</string>
     <string name="cadastrarIngredientes">Cadastrar Ingredientes</string>

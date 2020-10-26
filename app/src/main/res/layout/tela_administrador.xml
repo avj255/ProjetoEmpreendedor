@@ -17,6 +17,19 @@
         tools:layout_editor_absoluteY="0dp">
 
         <Button
+            android:id="@+id/botaoPedidos"
+            style="@style/CustomBotao"
+            android:layout_width="363dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="16dp"
+            android:onClick="CadastrarPratos"
+            android:text="@string/pedidos"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+        <Button
             android:id="@+id/botaoEditarCardapios"
             style="@style/CustomBotao"
             android:layout_width="363dp"
@@ -34,13 +47,13 @@
             style="@style/CustomBotao"
             android:layout_width="363dp"
             android:layout_height="68dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="24dp"
             android:onClick="CadastrarPratos"
             android:text="@string/cadastrarPratos"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+            app:layout_constraintTop_toBottomOf="@+id/botaoPedidos" />
 
         <Button
             android:id="@+id/botaoCadastrarIngredientes"
