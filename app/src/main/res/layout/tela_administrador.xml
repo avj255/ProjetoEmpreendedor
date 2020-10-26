@@ -16,13 +16,21 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
+        <TextView
+            android:id="@+id/branco5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            app:layout_constraintRight_toRightOf="@+id/botaoEditarCardapios"
+            app:layout_constraintTop_toBottomOf="@+id/botaoEditarCardapios" />
+
         <Button
             android:id="@+id/botaoPedidos"
             style="@style/CustomBotao"
             android:layout_width="363dp"
             android:layout_height="68dp"
             android:layout_marginTop="16dp"
-            android:onClick="CadastrarPratos"
+            android:onClick="Pedidos"
             android:text="@string/pedidos"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
