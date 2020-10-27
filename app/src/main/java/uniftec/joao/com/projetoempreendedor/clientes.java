@@ -78,6 +78,14 @@ public class clientes extends ActivityBase {
                 Intent v = new Intent(this, AcompanhamentoPedidosActivity.class);
                 startActivity(v);
                 break;
+            case R.id.alterarCadastro:
+                i = new Intent(this, alterarcadastro.class);
+                startActivity(i);
+                break;
+            case R.id.Sair:
+                i = new Intent(this, login.class);
+                startActivity(i);
+                break;
             default:
                 return super.onOptionsItemSelected(item);
         }

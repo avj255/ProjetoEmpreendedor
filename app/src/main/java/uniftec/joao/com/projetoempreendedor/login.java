@@ -179,6 +179,8 @@ public class login extends ActivityBase  implements OnShowListener, OnClickListe
                 Sessao.usuarioLogado.usuario = respostaLogin.usuario;
                 Sessao.usuarioLogado.nome = respostaLogin.nome;
                 Sessao.usuarioLogado.administrador = respostaLogin.administrador;
+                Sessao.usuarioLogado.cpf = respostaLogin.cpf;
+                Sessao.usuarioLogado.email = respostaLogin.email;
 
                 if (respostaLogin.administrador == 1) {
                     Intent i = new Intent(this, administradores.class);

@@ -43,6 +43,15 @@ public class administradores extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void Pedidos(View view)
+    {
+
+        // Sessao.descricaoDiaSemana = weekDayDescription();
+        //Sessao.diaSemana = Utilidades.WeekDay();
+        //Intent i = new Intent(this, graficos.class);
+        //startActivity(i);
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent i;
@@ -53,6 +62,18 @@ public class administradores extends AppCompatActivity {
                 break;
             case R.id.AlterarSenha:
                 i = new Intent(this, alterarSenha.class);
+                startActivity(i);
+                break;
+            case R.id.graficos:
+                i = new Intent(this, graficos.class);
+                startActivity(i);
+                break;
+            case R.id.alterarCadastro:
+                i = new Intent(this, alterarcadastro.class);
+                startActivity(i);
+                break;
+            case R.id.Sair:
+                i = new Intent(this, login.class);
                 startActivity(i);
                 break;
             default:

@@ -2,4 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
         <item android:title="Adicionar Administrador" android:id="@+id/AdicionarAdm"></item>
         <item android:title="Alterar Senha" android:id="@+id/AlterarSenha"></item>
+        <item android:title="Alteração Cadastral" android:id="@+id/alterarCadastro"></item>
+        <item android:title="Gráficos" android:id="@+id/graficos"></item>
+        <item android:title="Sair" android:id="@+id/Sair"></item>
+
 </menu>

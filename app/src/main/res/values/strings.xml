@@ -33,4 +33,6 @@
     <string name="title_activity_pratos">pratos</string>
     <string name="title_activity_acompanhamento_pedidos">Meus Pedidos</string>
     <string name="title_activity_cadastrar_pratos">cadastrarPratos</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

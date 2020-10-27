@@ -8,47 +8,53 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 
 import com.android.volley.VolleyError;
+import com.anychart.chart.common.dataentry.ValueDataEntry;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 
+import uniftec.joao.com.projetoempreendedor.Entidades.Pedidos;
 import uniftec.joao.com.projetoempreendedor.Entidades.Resposta;
 import uniftec.joao.com.projetoempreendedor.Entidades.RespostaLogin;
 import uniftec.joao.com.projetoempreendedor.Entidades.Usuarios;
 
-public class cadastro extends ActivityBase {
+public class alterarcadastro extends ActivityBase {
 
      EditText edtCpf;
      EditText edtUsuario;
      EditText edtEmail;
-     EditText edtConfirmaEmail;
      EditText edtNome;
-     EditText edtSenha;
-     EditText edtConfirmaSenha;
      ProgressBar progressBarCadastro;
      TextView edtCadastroInvalido;
+     int adm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tela_cadastro);
-        edtCpf= (EditText) findViewById(R.id.editTextCpf);
-        edtUsuario= (EditText) findViewById(R.id.edtitTextCadastroUsuario);
-        edtEmail= (EditText) findViewById(R.id.editTextEmail);
-        edtConfirmaEmail= (EditText) findViewById(R.id.editTextConfirmaEmail);
-        edtNome= (EditText) findViewById(R.id.editTextNome);
-        edtSenha= (EditText) findViewById(R.id.editTextSenha);
-        edtConfirmaSenha= (EditText) findViewById(R.id.editTextConfirmaSenha);
-        progressBarCadastro = findViewById(R.id.progressBarCadastro);
-        edtCadastroInvalido = findViewById(R.id.textViewCadastroInválido);
+        setContentView(R.layout.tela_alterarcadastro);
+        edtCpf= (EditText) findViewById(R.id.editTextAlterarCpf);
+        edtUsuario= (EditText) findViewById(R.id.EditTextAlterarUsuario);
+        edtEmail= (EditText) findViewById(R.id.EditTextAlterarEmail);
+        edtNome= (EditText) findViewById(R.id.editTextAlterarNome);
+        progressBarCadastro = findViewById(R.id.progressBarAlterarCadastro);
+        edtCadastroInvalido = findViewById(R.id.textviewAlteracaoCadastroInvalida);
         edtCpf.addTextChangedListener(MaskEditUtil.mask(edtCpf, MaskEditUtil.FORMAT_CPF));
-        Sessao.usuarioLogado = new Usuarios();
+        adm = Sessao.usuarioLogado.administrador;
+
+        edtCpf.setText(Sessao.usuarioLogado.cpf);
+        edtUsuario.setText(Sessao.usuarioLogado.usuario);
+        edtEmail.setText(Sessao.usuarioLogado.email);
+        edtNome.setText(Sessao.usuarioLogado.nome);
+
     }
 
     private boolean validaCampos()
@@ -58,10 +64,7 @@ public class cadastro extends ActivityBase {
         String cpf = edtCpf.getText().toString();
         String usuario = edtUsuario.getText().toString();
         String email = edtEmail.getText().toString();
-        String confirmaEmail = edtConfirmaEmail.getText().toString();
         String nome = edtNome.getText().toString();
-        String senha = edtSenha.getText().toString();
-        String confirmaSenha = edtConfirmaSenha.getText().toString();
 
         if (res = isCampoVazio(usuario))
         {
@@ -86,36 +89,6 @@ public class cadastro extends ActivityBase {
                         edtEmail.requestFocus();
                         resposta = "E-mail inválido.";
                     }
-                    else
-                        if(res = !isEmailValido(confirmaEmail))
-                        {
-                            edtConfirmaEmail.requestFocus();
-                            resposta = "E-mail inválido.";
-                        }
-                        else
-                            if(res = !email.equals(confirmaEmail))
-                            {
-                                edtConfirmaEmail.requestFocus();
-                                resposta = "E-mails não conferem.";
-                            }
-                            else
-                                if(res = isCampoVazio(senha))
-                                {
-                                    edtSenha.requestFocus();
-                                    resposta = "O Campo \"Senha\" deve ser preenchido.";
-                                }
-                                else
-                                    if(res = isCampoVazio(confirmaSenha))
-                                    {
-                                        edtConfirmaSenha.requestFocus();
-                                        resposta = "O Campo \"Confirma Senha\" deve ser preenchido.";
-                                    }
-                                     else
-                                        if (res = !senha.equals(confirmaSenha))
-                                        {
-                                            edtConfirmaSenha.requestFocus();
-                                            resposta = "Senhas não conferem.";
-                                        }
 
            if (res)
            {
@@ -199,19 +172,17 @@ public class cadastro extends ActivityBase {
         return (!isCampoVazio(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches());
     }
 
-    public void CadastrarNovoUsuario(View view)
+    public void AlterarCadastro(View view)
     {
         if (validaCampos())
         {
+
             Usuarios usuario = new Usuarios();
+            usuario.userID = Sessao.usuarioLogado.userID;
             usuario.usuario = edtUsuario.getText().toString();
-            usuario.senha = edtSenha.getText().toString();
-            usuario.administrador = 0; // Clientes
             usuario.nome = edtNome.getText().toString();
             usuario.email = edtEmail.getText().toString();
             usuario.cpf = edtCpf.getText().toString();
-            usuario.cnpj = "";
-            usuario.senha = edtSenha.getText().toString();
 
             edtCadastroInvalido.setVisibility(View.INVISIBLE);
             progressBarCadastro.setVisibility(View.VISIBLE);
@@ -222,25 +193,27 @@ public class cadastro extends ActivityBase {
 
     @Override
     void RetornoPOST(JSONObject resposta) {
-        progressBarCadastro.setVisibility(View.INVISIBLE);
-        habilitaInteracao();
 
         Gson gson = new Gson();
-        Resposta respostaCadastro = gson.fromJson(resposta.toString(), RespostaLogin.class);
+        Resposta respostaCadastro = gson.fromJson(resposta.toString(), Resposta.class);
 
         if (respostaCadastro.codigoRetorno == 2)
         {
             edtCadastroInvalido.setText(respostaCadastro.descricao);
             edtCadastroInvalido.setVisibility(View.VISIBLE);
         } else {
-            Sessao.usuarioLogado.userID = Integer.parseInt(respostaCadastro.descricao);
+
+           // Sessao.usuarioLogado = new Usuarios();
+            Sessao.usuarioLogado.userID  = Integer.parseInt(respostaCadastro.descricao);
             Sessao.usuarioLogado.usuario = edtUsuario.getText().toString();
-            Sessao.usuarioLogado.nome = edtNome.getText().toString();
-            Sessao.usuarioLogado.email = edtEmail.getText().toString();
+            Sessao.usuarioLogado.nome    = edtNome.getText().toString();
+            Sessao.usuarioLogado.administrador = adm;
             Sessao.usuarioLogado.cpf = edtCpf.getText().toString();
-            Sessao.usuarioLogado.administrador = 0;
-            Intent i = new Intent(this, clientes.class);
-            startActivity(i);
+            Sessao.usuarioLogado.email = edtEmail.getText().toString();
+            progressBarCadastro.setVisibility(View.INVISIBLE);
+            habilitaInteracao();
+            Toast.makeText(getApplicationContext(), "Cadastro Alterado com Sucesso!", Toast.LENGTH_SHORT).show();
+            finish();
                }
     }
 
@@ -253,8 +226,6 @@ public class cadastro extends ActivityBase {
 
     public void Cancelar(View view)
     {
-        Intent i = new Intent(this, login.class);
-        startActivity(i);
         finish();
     }
 

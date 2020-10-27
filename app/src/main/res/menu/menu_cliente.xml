@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
         <item android:title="Alterar Senha" android:id="@+id/AlterarSenha"></item>
+        <item android:title="Alteração Cadastral" android:id="@+id/alterarCadastro"></item>
         <item android:title="Meus Pedidos" android:id="@+id/MeusPedidos"></item>
+        <item android:title="Sair" android:id="@+id/Sair"></item>
 </menu>

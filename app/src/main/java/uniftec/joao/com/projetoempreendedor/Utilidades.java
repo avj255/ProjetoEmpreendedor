@@ -10,9 +10,10 @@ public class Utilidades {
     {
         switch (situacao)
         {
-            case 1: return "Em Produção";
-            case 2: return "Concluído";
-            case 3: return "Cancelado";
+            case 1: return "Aberto";
+            case 2: return "Em Produção";
+            case 3: return "Finalizado";
+            case 4: return "Cancelado";
         }
         return null;
     }
