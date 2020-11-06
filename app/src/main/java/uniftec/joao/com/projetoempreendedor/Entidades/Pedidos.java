@@ -10,4 +10,5 @@ public class Pedidos {
     public int quantidade;
     public int situacao;
     public Pratos pratoObj;
+    public String nomeUsuario;
 }

@@ -25,6 +25,7 @@ public class Utilidades {
             case 1: return Color.parseColor("#fc7b03");
             case 2: return Color.parseColor("#56ad3e");
             case 3: return Color.parseColor("#911f1d");
+            case 4: return Color.parseColor("#ff2d26");
         }
         return null;
     }

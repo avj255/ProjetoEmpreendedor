@@ -35,4 +35,18 @@
     <string name="title_activity_cadastrar_pratos">cadastrarPratos</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="situacao_pedidos">
+        <item>Abertos</item>
+        <item>Em Produção</item>
+        <item>Finalizados</item>
+        <item>Cancelados</item>
+    </string-array>
+
+    <string-array name="situacao">
+        <item>Aberto</item>
+        <item>Em Produção</item>
+        <item>Finalizado</item>
+        <item>Cancelado</item>
+    </string-array>
 </resources>

@@ -45,11 +45,8 @@ public class administradores extends AppCompatActivity {
 
     public void Pedidos(View view)
     {
-
-        // Sessao.descricaoDiaSemana = weekDayDescription();
-        //Sessao.diaSemana = Utilidades.WeekDay();
-        //Intent i = new Intent(this, graficos.class);
-        //startActivity(i);
+        Intent i = new Intent(this, AcompanhamentoPedidosAdminActivity.class);
+        startActivity(i);
     }
 
     @Override
