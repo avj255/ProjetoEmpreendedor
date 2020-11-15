@@ -11,4 +11,5 @@ public class Sessao {
     public static Pratos prato;
     public static Boolean realizapedido;
     public static Integer idPrato;
+    public static String token;
 }

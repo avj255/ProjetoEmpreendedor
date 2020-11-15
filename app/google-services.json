@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "715356354694",
+    "firebase_url": "https://tccftec.firebaseio.com",
+    "project_id": "tccftec",
+    "storage_bucket": "tccftec.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:715356354694:android:e8fdc1618047e7f8d33907",
+        "android_client_info": {
+          "package_name": "uniftec.joao.com.projetoempreendedor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "715356354694-cf0e4cbohqb3e92ku0g7jso1s0i4a691.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCq4HxOkrhqc-VMcxo4MyEZ4H23Hx5OVzE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "715356354694-cf0e4cbohqb3e92ku0g7jso1s0i4a691.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

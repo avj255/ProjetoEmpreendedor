@@ -10,4 +10,5 @@ public class Usuarios {
     public String cpf;
     public int administrador;
     public String novaSenha;
+    public String token;
 }

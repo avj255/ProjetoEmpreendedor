@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -17,12 +18,17 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import android.content.DialogInterface.OnShowListener;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.google.gson.Gson;
 import org.json.JSONObject;
 
@@ -53,6 +59,18 @@ public class login extends ActivityBase  implements OnShowListener, OnClickListe
         edtLoginInvalido = findViewById(R.id.textViewLoginInvalido);
 
         Sessao.usuarioLogado = new Usuarios();
+
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            return;
+                        }
+
+                        Sessao.token = task.getResult().getToken();
+                    }
+                });
 
         // Debug
         //Sessao.usuarioLogado.userID = 4;
@@ -109,6 +127,7 @@ public class login extends ActivityBase  implements OnShowListener, OnClickListe
             Usuarios usuario = new Usuarios();
             usuario.usuario = edtUsuario.getText().toString();
             usuario.senha = edtSenha.getText().toString();
+            usuario.token = Sessao.token;
             edtLoginInvalido.setVisibility(View.INVISIBLE);
             progressBar.setVisibility(View.VISIBLE);
             desabilitaInteracao();
@@ -181,6 +200,7 @@ public class login extends ActivityBase  implements OnShowListener, OnClickListe
                 Sessao.usuarioLogado.administrador = respostaLogin.administrador;
                 Sessao.usuarioLogado.cpf = respostaLogin.cpf;
                 Sessao.usuarioLogado.email = respostaLogin.email;
+                Sessao.usuarioLogado.token = Sessao.token;
 
                 if (respostaLogin.administrador == 1) {
                     Intent i = new Intent(this, administradores.class);
