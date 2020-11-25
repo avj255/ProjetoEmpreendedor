@@ -48,6 +48,7 @@ public class cadastro extends ActivityBase {
         progressBarCadastro = findViewById(R.id.progressBarCadastro);
         edtCadastroInvalido = findViewById(R.id.textViewCadastroInválido);
         edtCpf.addTextChangedListener(MaskEditUtil.mask(edtCpf, MaskEditUtil.FORMAT_CPF));
+
         Sessao.usuarioLogado = new Usuarios();
     }
 

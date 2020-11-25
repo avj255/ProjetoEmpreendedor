@@ -201,6 +201,8 @@ public class alterarcadastro extends ActivityBase {
         {
             edtCadastroInvalido.setText(respostaCadastro.descricao);
             edtCadastroInvalido.setVisibility(View.VISIBLE);
+            progressBarCadastro.setVisibility(View.INVISIBLE);
+            habilitaInteracao();
         } else {
 
            // Sessao.usuarioLogado = new Usuarios();

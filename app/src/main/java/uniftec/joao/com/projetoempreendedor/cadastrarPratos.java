@@ -39,6 +39,13 @@ public class cadastrarPratos  extends ActivityBase {
         atualizarListaPratosCadastro();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        atualizarListaPratosCadastro();
+    }
+
+
     public void AdicionarPrato(View view)
     {
         Sessao.idPrato = null;
